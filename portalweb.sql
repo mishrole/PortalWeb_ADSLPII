@@ -94,6 +94,7 @@ portal_fecha datetime not null,
 
 solicitud_id int(6) not null,
 usuario_id int(6) not null,
+visibilidad int(1),
 
 primary key (portal_id),
 foreign key (solicitud_id) references solicitud(solicitud_id) on update cascade on delete no action,

@@ -1,3 +1,3 @@
 <%
-	response.sendRedirect("ServletMantenimientoSolicitud?accion=LISTAR");
+	response.sendRedirect("login.jsp");
 %>

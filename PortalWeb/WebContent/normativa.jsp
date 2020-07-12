@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap 4.5 CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<title>Nueva Solicitud</title>
+<title>Nueva Normativa</title>
 </head>
 <body>
 
@@ -21,47 +21,21 @@
 	</div>
 </c:if>
 
-<div class="container">
-<h2 class="text-center mt-5 mb-5">Nueva Solicitud</h2>
-<form method="post" action="ServletUnidadOrganica?accion=REGISTRAR" id="solicitud-form" enctype="multipart/form-data">
-  <div class="form-group row">
-    <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputNombre" name="nombre">  
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputResumen" class="col-sm-2 col-form-label">Resumen</label>
-    <div class="col-sm-10">
-      <textarea class="form-control" id="inputResumen" rows="3" name="resumen"></textarea>
-    </div>
-  </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="normativa">Normativa</label>
-      <div class="col-sm-10">
-        <select class="form-control" name="normativa">
-        <option value="">[Seleccione]</option>
-        <option value="1">Acuerdo</option>
-        <option value="2">Decreto</option>
-        <option value="3">Ordenanza</option>
-        <option value="4">Resolución</option>
-      </select>
-      </div>
-     </div>
-     
-    <div class="form-group row">
-    <label class="col-sm-2 col-form-label" for="inputArchivo">Archivo</label>
-    <div class="col-sm-10 col-form-label">
-    	<input type="file" class="form-control-file" id="inputArchivo" name="archivo">
-    </div>
-  	</div>
-    <div class="text-center mt-5">
-      <button type="submit" class="btn btn-primary pl-5 pr-5">Enviar</button>
-    </div>
-    
-</form>
-</div>
-
+	<div class="container">
+		<h2 class="text-center mt-5 mb-5">Nueva Normativa</h2>
+		<form method="post" action="ServletNormativa?accion=REGISTRAR" id="solicitud-form">
+			<div class="form-group row">
+				<label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputNombre" name="nombre">
+				</div>
+			</div>
+			<div class="text-center mt-5">
+				<button type="submit" class="btn btn-primary pl-5 pr-5">Registrar</button>
+			</div>
+		</form>
+	</div>
+	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -70,35 +44,17 @@
 	<!-- jQuery Validation (Minificados) -->
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
-
+	
 	<script>
 		$("#solicitud-form").validate({
 			rules: {
 				nombre: {
-					required: true
-				},
-				resumen: {
-					required: true
-				},
-				normativa: {
-					required: true
-				},
-				archivo: {
 					required: true
 				}
 			},
 			messages: {
 				nombre: {
 					required: 'Ingrese un nombre'
-				},
-				resumen: {
-					required: 'Ingrese un resumen'
-				},
-				normativa: {
-					required: 'Seleccione una normativa'
-				},
-				archivo: {
-					required: 'Seleccione un archivo'
 				}
 			},
 			
@@ -116,5 +72,6 @@
 			
 		});
 	</script>
+
 </body>
 </html>

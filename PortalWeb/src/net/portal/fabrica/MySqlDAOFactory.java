@@ -2,6 +2,7 @@ package net.portal.fabrica;
 
 import net.portal.dao.MySqlSolicitudDAO;
 import net.portal.dao.MySqlUsuarioDAO;
+import net.portal.interfaces.NormativaDAO;
 import net.portal.interfaces.SolicitudDAO;
 import net.portal.interfaces.UsuarioDAO;
 
@@ -16,6 +17,12 @@ public class MySqlDAOFactory extends DAOFactory {
 	@Override
 	public UsuarioDAO getUsuarioDAO() {
 		return new MySqlUsuarioDAO();
+	}
+
+	@Override
+	public NormativaDAO getNormativaDAO() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,5 +1,6 @@
 package net.portal.fabrica;
 
+import net.portal.interfaces.NormativaDAO;
 import net.portal.interfaces.SolicitudDAO;
 import net.portal.interfaces.UsuarioDAO;
 
@@ -14,6 +15,7 @@ public abstract class DAOFactory {
     
     public abstract SolicitudDAO getSolicitudDAO();
     public abstract UsuarioDAO getUsuarioDAO();
+    public abstract NormativaDAO getNormativaDAO();
     
     public static DAOFactory getDAOFactory(int whichFactory){
         switch(whichFactory){
