@@ -99,3 +99,26 @@ primary key (portal_id),
 foreign key (solicitud_id) references solicitud(solicitud_id) on update cascade on delete no action,
 foreign key (usuario_id) references usuario(usuario_id) on update cascade on delete no action
 );
+
+Create table menu
+(
+menu_id int(6) auto_increment not null,
+menu_descripcion varchar(60) not null,
+menu_url varchar(300) not null,
+primary key (menu_id)
+);
+
+Insert into menu values(null, "Solicitudes Presentadas", "ServletUnidadOrganica?accion=LISTAR");
+
+Create table acceso
+(
+menu_id int(6) not null,
+usuario_id int(6) not null,
+primary key (menu_id, usuario_id), key usuario_id(usuario_id),
+foreign key (menu_id) references menu(menu_id),
+foreign key (usuario_id) references usuario(usuario_id)
+);
+
+Insert into acceso values(1, 1);
+
+Select A.menu_id, M.menu_descripcion, M.menu_url from acceso A join menu M on A.menu_id = M.menu_id;

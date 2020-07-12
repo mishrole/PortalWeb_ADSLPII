@@ -23,14 +23,14 @@ import net.portal.entidad.ListarSolicitudes;
 /**
  * Servlet implementation class ServletMantenimientoSolicitud
  */
-@WebServlet("/ServletMantenimientoSolicitud")
+@WebServlet("/ServletUnidadOrganica")
 @MultipartConfig
-public class ServletMantenimientoSolicitud extends HttpServlet {
+public class ServletUnidadOrganica extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private SolicitudService servicioSolicitud;
 
-    public ServletMantenimientoSolicitud() {
+    public ServletUnidadOrganica() {
     	super();
         servicioSolicitud = new SolicitudService();
     }
@@ -47,7 +47,7 @@ public class ServletMantenimientoSolicitud extends HttpServlet {
 
 	private void listarSolicitudesPresentadas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<ListarSolicitudes> lista = servicioSolicitud.listarPresentadas();
-		request.setAttribute("solicitudes", lista);
+		request.setAttribute("presentadas", lista);
 		request.getRequestDispatcher("/solicitudesPresentadas.jsp").forward(request, response);
 	}
 
@@ -71,7 +71,7 @@ public class ServletMantenimientoSolicitud extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		bean.setFecha(sdf.format(date));
-		bean.setUsuario("1"); // Seteado temporal (todavía no está listo)
+		bean.setUsuario(1); // Seteado temporal (todavía no está listo)
 		bean.setEstado("1"); // Estado por defecto : En proceso
 		
 		bean.setSolicitud_nombre(nombre);

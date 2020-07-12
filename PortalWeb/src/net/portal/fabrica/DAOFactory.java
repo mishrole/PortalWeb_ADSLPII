@@ -1,6 +1,7 @@
 package net.portal.fabrica;
 
 import net.portal.interfaces.SolicitudDAO;
+import net.portal.interfaces.UsuarioDAO;
 
 public abstract class DAOFactory {
 	public static final int MYSQL = 1;
@@ -12,6 +13,7 @@ public abstract class DAOFactory {
     // Registro de DAOs
     
     public abstract SolicitudDAO getSolicitudDAO();
+    public abstract UsuarioDAO getUsuarioDAO();
     
     public static DAOFactory getDAOFactory(int whichFactory){
         switch(whichFactory){

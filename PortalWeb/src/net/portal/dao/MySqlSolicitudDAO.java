@@ -26,7 +26,7 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 			String sql = "Insert into solicitud values(null, ?, ?, ?, ?, ?, ?, ?)";
 			pstm = cn.prepareStatement(sql);
 			pstm.setString(1, bean.getFecha());
-			pstm.setInt(2, Integer.parseInt(bean.getUsuario()));
+			pstm.setInt(2, bean.getUsuario());
 			pstm.setInt(3, Integer.parseInt(bean.getEstado()));
 			pstm.setString(4, bean.getSolicitud_nombre());
 			pstm.setString(5, bean.getSolicitud_resumen());
@@ -48,13 +48,13 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 	}
 
 	@Override
-	public int delete(int codigo) {
+	public int deleteSolicitud(int codigo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(NuevaSolicitud bean) {
+	public int updateSolicitud(NuevaSolicitud bean) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -71,16 +71,15 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 		try {
 			
 			cn = MySqlBDConexion.getConexion();
-			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.usuario_id, E.estado_nombre" +
-			" from solicitud S inner join estado E on S.estado_id = E.estado_id";
+			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.usuario_id, E.estado_nombre from solicitud S inner join estado E on S.estado_id = E.estado_id";
 			pstm = cn.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			
 			while(rs.next()) {
 				bean = new ListarSolicitudes();
 				bean.setId(rs.getInt(1));
-				bean.setFecha(rs.getString(2));
-				bean.setUsuario(rs.getString(3));
+				bean.setFecha(""+rs.getDate(2));
+				bean.setUsuario(rs.getInt(3));
 				bean.setEstado(rs.getString(4));
 				lista.add(bean);
 			}

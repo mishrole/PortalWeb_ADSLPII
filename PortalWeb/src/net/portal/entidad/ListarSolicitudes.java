@@ -3,7 +3,7 @@ package net.portal.entidad;
 public class ListarSolicitudes {
 	private int id;
 	private String fecha;
-	private String usuario;
+	private int usuario;
 	private String estado;
 	
 	public int getId() {
@@ -18,10 +18,10 @@ public class ListarSolicitudes {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-	public String getUsuario() {
+	public int getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(String usuario) {
+	public void setUsuario(int usuario) {
 		this.usuario = usuario;
 	}
 	public String getEstado() {
@@ -30,6 +30,8 @@ public class ListarSolicitudes {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
+	
 	
 	
 	

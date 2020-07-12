@@ -7,8 +7,8 @@ import net.portal.entidad.NuevaSolicitud;
 
 public interface SolicitudDAO {
 	public int insertSolicitud(NuevaSolicitud bean);
-	public int delete(int codigo);
-	public int update(NuevaSolicitud bean);
+	public int deleteSolicitud(int codigo);
+	public int updateSolicitud(NuevaSolicitud bean);
 	public List<ListarSolicitudes> listPresentadas();
 	public NuevaSolicitud findSolicitud(int codigo);
 
