@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +11,15 @@
 <title>Nueva Solicitud</title>
 </head>
 <body>
+
+<c:if test="${requestScope.MENSAJE!=null}">
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  <strong>${requestScope.MENSAJE}</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+</c:if>
 
 <div class="container">
 <h2 class="text-center mt-5 mb-5">Nueva Solicitud</h2>
@@ -80,10 +92,10 @@
 					required: 'Ingrese un nombre'
 				},
 				resumen: {
-					required: 'Ingrese resumen'
+					required: 'Ingrese un resumen'
 				},
 				normativa: {
-					required: 'Seleccione normativa'
+					required: 'Seleccione una normativa'
 				},
 				archivo: {
 					required: 'Seleccione un archivo'
