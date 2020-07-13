@@ -11,5 +11,4 @@ public interface SolicitudDAO {
 	public int updateSolicitud(NuevaSolicitud bean);
 	public List<ListarSolicitudes> listPresentadas();
 	public NuevaSolicitud findSolicitud(int codigo);
-
 }

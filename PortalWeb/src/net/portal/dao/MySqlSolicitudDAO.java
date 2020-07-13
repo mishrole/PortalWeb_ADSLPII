@@ -54,7 +54,7 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 		PreparedStatement pstm=null;
 		try {
 			cn=MySqlBDConexion.getConexion();
-			String sql="delete from solicitud where where solicitud_id = ? and estado_id = 1";
+			String sql="delete from solicitud where solicitud_id = ? and estado_id = 1";
 			pstm=cn.prepareStatement(sql);
 			pstm.setInt(1,codigo);
 			estado=pstm.executeUpdate();
