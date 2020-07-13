@@ -5,6 +5,7 @@ public class ListarSolicitudes {
 	private String fecha;
 	private int usuario;
 	private String estado;
+	private int tecnico;
 	
 	public int getId() {
 		return id;
@@ -30,9 +31,12 @@ public class ListarSolicitudes {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
-	
+	public int getTecnico() {
+		return tecnico;
+	}
+	public void setTecnico(int tecnico) {
+		this.tecnico = tecnico;
+	}
 	
 	
 }

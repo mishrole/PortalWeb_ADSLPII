@@ -23,7 +23,7 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 		
 		try {
 			cn = MySqlBDConexion.getConexion();
-			String sql = "Insert into solicitud values(null, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "Insert into solicitud values(null, ?, ?, ?, ?, ?, ?, ?, null)";
 			pstm = cn.prepareStatement(sql);
 			pstm.setString(1, bean.getFecha());
 			pstm.setInt(2, bean.getUsuario());

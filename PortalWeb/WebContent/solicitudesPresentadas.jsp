@@ -62,7 +62,7 @@
 	} );
 	
 	$(".btn-primary").click(function() {
-		window.location.href='registraSolicitud.jsp';
+		window.location.href='ServletUnidadOrganica?accion=LISTAR_NORMATIVAS';
 	})
 	</script>
 </body>

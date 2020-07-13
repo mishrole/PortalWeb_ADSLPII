@@ -57,7 +57,7 @@ Insert into usuario (usuario_login, usuario_password, usuario_nombre, usuario_ap
 Create table solicitud
 (
 solicitud_id int(6) auto_increment not null,
-solicitud_fecha date not null,
+solicitud_fecha datetime not null,
 usuario_id int(6) not null,
 estado_id int(6) not null,
 
@@ -66,11 +66,16 @@ solicitud_resumen varchar(500) not null,
 normativa_id int(6) not null,
 solicitud_file longblob not null,
 
+tecnico_asignado int(6),
+
 primary key (solicitud_id),
 foreign key (estado_id) references estado(estado_id) on update cascade on delete no action,
 foreign key (normativa_id) references normativa(normativa_id) on update cascade on delete no action,
-foreign key (usuario_id) references usuario(usuario_id) on update cascade on delete no action
+foreign key (usuario_id) references usuario(usuario_id) on update cascade on delete no action,
+foreign key (tecnico_asignado) references usuario(usuario_id) on update cascade on delete no action
 );
+
+Insert into solicitud values (1, '2020-07-13 00:00:00', 1, 1, 'test', 'test', 1, 'asda', 1);
 
 Create table informe
 (
@@ -109,7 +114,7 @@ menu_url varchar(300) not null,
 primary key (menu_id)
 );
 
-Insert into menu values(null, "Solicitudes Presentadas", "ServletUnidadOrganica?accion=LISTAR");
+Insert into menu values(null, "Solicitudes Presentadas", "ServletUnidadOrganica?accion=LISTAR"), (null, "Solicitudes Pendientes", "ServletPendientes?accion=LISTAR");
 
 Create table acceso
 (
@@ -120,4 +125,4 @@ foreign key (menu_id) references menu(menu_id),
 foreign key (usuario_id) references usuario(usuario_id)
 );
 
-Insert into acceso values(1, 1);
+Insert into acceso values(1, 1), (2, 2);
