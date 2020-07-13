@@ -41,10 +41,9 @@
       <div class="col-sm-10">
         <select class="form-control" name="normativa">
         <option value="">[Seleccione]</option>
-        <option value="1">Acuerdo</option>
-        <option value="2">Decreto</option>
-        <option value="3">Ordenanza</option>
-        <option value="4">Resolución</option>
+        <c:forEach items="${requestScope.normativas}" var="row">
+        	<option value="${row.normativa_id}">${row.normativa_nombre}</option>
+        </c:forEach>
       </select>
       </div>
      </div>

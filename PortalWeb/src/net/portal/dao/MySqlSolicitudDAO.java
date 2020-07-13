@@ -134,7 +134,7 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 		}finally {
 			try {
 				if(rs != null) rs.close();
-				if(pstm != null) rs.close();
+				if(pstm != null) pstm.close();
 				if(cn != null) cn.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();

@@ -10,39 +10,29 @@
 <!-- Bootstrap 4.5 CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<title>Solicitudes Presentadas</title>
+<title>Lista de Normativas</title>
+</head>
 </head>
 <body>
-<!-- 
-<c:if test="${requestScope.MENSAJE!=null}">
-	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-	  <strong>${requestScope.MENSAJE}</strong>
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    <span aria-hidden="true">&times;</span>
-	  </button>
-	</div>
-</c:if>
- -->
-	<div class="container">
+
+<div class="container">
 		<h2 class="text-center mt-5 mb-5">Solicitudes Presentadas</h2>
-		<button type="submit" class="btn btn-primary">Nueva Solicitud</button><p>
+		<button type="submit" class="btn btn-primary">Nueva Normativa</button><p>
 			
 			<table id="table_id" class="display">
 			    <thead>
 			        <tr>
 			            <th>ID</th>
-			            <th>Fecha</th>
-			            <th>Estado</th>
-			            <th></th>
+			            <th>Nombre</th>
+			            <!--<th></th> -->
 			        </tr>
 			    </thead>
 			    <tbody>
-					<c:forEach items="${requestScope.presentadas}" var="item">
+					<c:forEach items="${requestScope.normativas}" var="item">
 						<tr>
-				         	<td>${item.id}</td>
-				         	<td>${item.fecha}</td>
-				         	<td>${item.estado}</td>
-				         	<td><a href="ServletUnidadOrganica?accion=buscar&codigo=${row.codigo}">Editar</a></td>
+				         	<td>${item.normativa_id}</td>
+				         	<td>${item.normativa_nombre}</td>
+				         	<!-- <td><a href="ServletNormativa?accion=buscar&codigo=${row.normativa_id}">Editar</a></td> -->
 				        </tr>
 					</c:forEach>
 			    </tbody>
@@ -62,8 +52,9 @@
 	} );
 	
 	$(".btn-primary").click(function() {
-		window.location.href='registraSolicitud.jsp';
+		window.location.href='normativa.jsp';
 	})
 	</script>
+
 </body>
 </html>

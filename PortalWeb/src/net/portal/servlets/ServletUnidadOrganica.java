@@ -2,7 +2,6 @@ package net.portal.servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -16,9 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import net.portal.entidad.NuevaSolicitud;
+import net.portal.service.NormativaService;
 import net.portal.service.SolicitudService;
-import net.portal.dao.MySqlSolicitudDAO;
 import net.portal.entidad.ListarSolicitudes;
+import net.portal.entidad.Normativa;
 
 /**
  * Servlet implementation class ServletMantenimientoSolicitud
@@ -29,10 +29,12 @@ public class ServletUnidadOrganica extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private SolicitudService servicioSolicitud;
+	private NormativaService servicioNormativa;
 
     public ServletUnidadOrganica() {
     	super();
         servicioSolicitud = new SolicitudService();
+        servicioNormativa = new NormativaService();
     }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,7 +44,16 @@ public class ServletUnidadOrganica extends HttpServlet {
 			registrarSolicitud(request, response);
 		}else if(action.equals("LISTAR")) {
 			listarSolicitudesPresentadas(request, response);
+		}else if(action.equals("LISTAR_NORMATIVAS")) {
+			listarTodasNormativas(request, response);
 		}
+	}
+
+	private void listarTodasNormativas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Normativa> lista = servicioNormativa.listarNormativas();
+		request.setAttribute("normativas", lista);
+		request.getRequestDispatcher("/registraSolicitud.jsp").forward(request, response);
+		
 	}
 
 	private void listarSolicitudesPresentadas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,14 +63,14 @@ public class ServletUnidadOrganica extends HttpServlet {
 	}
 
 	private void registrarSolicitud(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String nombre, resumen, normativa, nombreArchivo;
+		String nombre, resumen, normativa;
 		
 		nombre = request.getParameter("nombre");
 		resumen = request.getParameter("resumen");
 		normativa = request.getParameter("normativa");
 		
 		Part archivo = request.getPart("archivo");
-		nombreArchivo = Paths.get(archivo.getSubmittedFileName()).getFileName().toString();
+		//String nombreArchivo = Paths.get(archivo.getSubmittedFileName()).getFileName().toString();
 		InputStream contenido = null;
 
 		contenido = archivo.getInputStream();

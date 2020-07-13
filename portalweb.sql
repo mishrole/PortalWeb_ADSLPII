@@ -94,7 +94,7 @@ portal_fecha datetime not null,
 
 solicitud_id int(6) not null,
 usuario_id int(6) not null,
-visibilidad int(1),
+visibilidad int(1) default '1',
 
 primary key (portal_id),
 foreign key (solicitud_id) references solicitud(solicitud_id) on update cascade on delete no action,
@@ -121,5 +121,3 @@ foreign key (usuario_id) references usuario(usuario_id)
 );
 
 Insert into acceso values(1, 1);
-
-Select A.menu_id, M.menu_descripcion, M.menu_url from acceso A join menu M on A.menu_id = M.menu_id;

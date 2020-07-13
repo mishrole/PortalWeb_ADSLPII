@@ -23,7 +23,7 @@
 
 	<div class="container">
 		<h2 class="text-center mt-5 mb-5">Nueva Normativa</h2>
-		<form method="post" action="ServletNormativa?accion=REGISTRAR" id="solicitud-form">
+		<form method="post" action="ServletNormativa?operacion=REGISTRAR" id="solicitud-form">
 			<div class="form-group row">
 				<label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
 				<div class="col-sm-10">
@@ -32,6 +32,7 @@
 			</div>
 			<div class="text-center mt-5">
 				<button type="submit" class="btn btn-primary pl-5 pr-5">Registrar</button>
+				<button type="button" class="btn btn-secondary pl-5 pr-5">Ver todas</button>
 			</div>
 		</form>
 	</div>
@@ -71,6 +72,10 @@
 			}
 			
 		});
+		
+		$(".btn-secondary").click(function () {
+			window.location.href='ServletNormativa?operacion=LISTAR';
+		})
 	</script>
 
 </body>

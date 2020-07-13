@@ -105,7 +105,7 @@ public class MySqlNormativaDAO implements NormativaDAO{
 		try {
 			
 			cn = MySqlBDConexion.getConexion();
-			String sql = "Select * from normativa";
+			String sql = "Select normativa_id, normativa_nombre from normativa";
 			pstm = cn.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			
