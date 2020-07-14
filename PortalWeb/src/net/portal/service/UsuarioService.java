@@ -18,4 +18,20 @@ public class UsuarioService {
 	public List<Menu> getMenusUsuario(int id) {
 		return daoUsuario.getMenusUsuario(id);
 	}
+	
+	public List<Usuario> listarUsuarios() {
+		return daoUsuario.listUsuarios();
+	}
+	
+	public int registrarUsuario(Usuario bean) {
+		return daoUsuario.insertUsuario(bean);
+	}
+	
+	public int actualizarUsuario(Usuario bean) {
+		return daoUsuario.updateUsuario(bean);
+	}
+	
+	public int eliminarUsuario(int codigo) {
+		return daoUsuario.deleteUsuario(codigo);
+	}
 }

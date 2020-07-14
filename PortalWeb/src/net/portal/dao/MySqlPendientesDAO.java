@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.portal.entidad.ListarSolicitudes;
-import net.portal.entidad.NuevaSolicitud;
 import net.portal.interfaces.PendientesDAO;
 import net.portal.utils.MySqlBDConexion;
 

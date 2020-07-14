@@ -6,14 +6,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.portal.entidad.Normativa;
-import net.portal.interfaces.NormativaDAO;
+import net.portal.entidad.Rol;
+import net.portal.interfaces.RolDAO;
 import net.portal.utils.MySqlBDConexion;
 
-public class MySqlNormativaDAO implements NormativaDAO{
+public class MySqlRolDAO implements RolDAO{
 
 	@Override
-	public int insertNormativa(Normativa bean) {
+	public int insertRol(Rol bean) {
 		int estado = -1;
 		
 		Connection cn = null;
@@ -22,10 +22,10 @@ public class MySqlNormativaDAO implements NormativaDAO{
 		try {
 			
 			cn = MySqlBDConexion.getConexion();
-			String sql = "Insert into normativa values(null, ?)";
+			String sql = "Insert into rol values(null, ?)";
 			pstm = cn.prepareStatement(sql);
 			
-			pstm.setString(1, bean.getNormativa_nombre());
+			pstm.setString(1, bean.getRol_nombre());
 			estado = pstm.executeUpdate();
 			
 		} catch (Exception e) {
@@ -43,17 +43,16 @@ public class MySqlNormativaDAO implements NormativaDAO{
 	}
 
 	@Override
-	public int updateNormativa(Normativa bean) {
+	public int updateRol(Rol bean) {
 		int estado = -1;
 		Connection cn = null;
 		PreparedStatement pstm = null;
-		
 		try {
 			cn = MySqlBDConexion.getConexion();
-			String sql = "update normativa set normativa_nombre = ? where normativa_id = ?";
+			String sql = "update rol set rol_nombre = ? where rol_id = ?";
 			pstm = cn.prepareStatement(sql);
-			pstm.setString(1, bean.getNormativa_nombre());
-			pstm.setInt(2, bean.getNormativa_id());
+			pstm.setString(1, bean.getRol_nombre());
+			pstm.setInt(2, bean.getRol_id());
 			estado = pstm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,16 +70,16 @@ public class MySqlNormativaDAO implements NormativaDAO{
 	}
 
 	@Override
-	public int deleteNormativa(int codigo) {
-		int estado=-1;
-		Connection cn=null;
-		PreparedStatement pstm=null;
+	public int deleteRol(int codigo) {
+		int estado = -1;
+		Connection cn = null;
+		PreparedStatement pstm = null;
 		try {
-			cn=MySqlBDConexion.getConexion();
-			String sql="delete from normativa where normativa_id = ?";
-			pstm=cn.prepareStatement(sql);
+			cn = MySqlBDConexion.getConexion();
+			String sql = "Delete from rol where rol_id = ?";
+			pstm = cn.prepareStatement(sql);
 			pstm.setInt(1,codigo);
-			estado=pstm.executeUpdate();
+			estado = pstm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -96,10 +95,10 @@ public class MySqlNormativaDAO implements NormativaDAO{
 	}
 
 	@Override
-	public List<Normativa> listNormativas() {
-		List<Normativa> lista = new ArrayList<Normativa>();
+	public List<Rol> listRoles() {
+		List<Rol> lista = new ArrayList<Rol>();
 		
-		Normativa bean = null;
+		Rol bean = null;
 		Connection cn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -107,14 +106,14 @@ public class MySqlNormativaDAO implements NormativaDAO{
 		try {
 			
 			cn = MySqlBDConexion.getConexion();
-			String sql = "Select normativa_id, normativa_nombre from normativa";
+			String sql = "Select rol_id, rol_nombre from rol";
 			pstm = cn.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			
 			while(rs.next()) {
-				bean = new Normativa();
-				bean.setNormativa_id(rs.getInt(1));
-				bean.setNormativa_nombre(rs.getString(2));
+				bean = new Rol();
+				bean.setRol_id(rs.getInt(1));
+				bean.setRol_nombre(rs.getString(2));
 				lista.add(bean);
 			}
 			
