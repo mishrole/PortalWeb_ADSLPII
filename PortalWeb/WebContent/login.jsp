@@ -23,13 +23,21 @@
   </c:if>
   
     <div class="container">
-      <form class="form-signin" action="ServletUsuario?accion=INICIAR" method="post">
-        <h2 class="form-signin-heading">Login</h2>
-        <label for="inputEmail" class="sr-only">Usuario</label>
-        <input type="text" name="login" id="inputEmail" class="form-control" placeholder="Ingrese el usuario" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Ingrese el password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+      <form class="form-signin mt-5 mb-5" action="ServletUsuario?accion=INICIAR" method="post">
+        <h2 class="form-signin-heading text-center">Login</h2>
+        
+        <div class="form-group mx-auto col-sm-6 mt-5">
+        	<label for="inputEmail" class="sr-only">Usuario</label>
+        	<input type="text" name="login" id="inputEmail" class="form-control" placeholder="Ingrese el usuario" required autofocus>
+        </div>
+       <div class="form-group mx-auto col-sm-6 mb-5">
+       		<label for="inputPassword" class="sr-only">Password</label>
+        	<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Ingrese el password" required>
+       </div>
+       <div class="text-center mt-5">
+       		<button class="btn btn-primary pl-5 pr-5 pt-2 pb-2" type="submit">Ingresar</button>
+       </div>
+        
       </form>
     </div>
     	<!-- JS, Popper.js, and jQuery -->

@@ -19,9 +19,9 @@
 <body>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	  <div class="navbar-header">
-	      <a class="navbar-brand" href="#">MUNI</a>
+	      <a class="navbar-brand" href="#">Portal Web</a>
 	  </div>
-	  <ul class="navbar-nav">
+	  <ul class="navbar-nav mr-auto">
 		<c:forEach items="${sessionScope.menus}" var="row">	
 		    <li class="nav-item">
 		      <a class="nav-link" href="${row.url}">${row.descripcion}</a>
@@ -29,15 +29,15 @@
 		</c:forEach>
 	    
 	  </ul>
-	  <li class="navbar-nav">
-		      <a class="nav-link" href="ServletUsuario?accion=CERRAR">Cerrar Sesión</a>
-		    </li>
+	  <ul class="navbar-nav">
+	  	<li><a class="nav-link" href="ServletUsuario?accion=CERRAR">Cerrar Sesión</a></li>
+	  </ul>
 	  
 	</nav>
-<div class="container">
+<!-- <div class="container">
 
 
-</div>
+</div> -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script   src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
