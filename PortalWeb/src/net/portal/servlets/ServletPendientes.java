@@ -37,7 +37,14 @@ public class ServletPendientes extends HttpServlet {
 		
 		if(action.equals("LISTAR")) {
 			listarSolicitudesPendientes(request, response);
+		}else if (action.equals("GESTIONAR")) {
+			gestionarSolicitudPendiente(request, response);
 		}
+	}
+
+	private void gestionarSolicitudPendiente(HttpServletRequest request, HttpServletResponse response) {
+
+		
 	}
 
 	private void listarSolicitudesPendientes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

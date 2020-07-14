@@ -13,16 +13,7 @@
 <title>Solicitudes Presentadas</title>
 </head>
 <body>
-<!-- 
-<c:if test="${requestScope.MENSAJE!=null}">
-	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-	  <strong>${requestScope.MENSAJE}</strong>
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    <span aria-hidden="true">&times;</span>
-	  </button>
-	</div>
-</c:if>
- -->
+
 	<div class="container">
 		<h2 class="text-center mt-5 mb-5">Solicitudes Presentadas</h2>
 		<button type="submit" class="btn btn-primary">Nueva Solicitud</button><p>

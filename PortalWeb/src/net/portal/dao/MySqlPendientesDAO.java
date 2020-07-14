@@ -62,10 +62,11 @@ public class MySqlPendientesDAO implements PendientesDAO{
 		
 		try {
 			cn = MySqlBDConexion.getConexion();
-			String sql = "Update solicitud set estado_id = ? where solicitud_id = ?";
+			String sql = "Update solicitud set estado_id = ?, tecnico_asignado = ? where solicitud_id = ?";
 			pstm = cn.prepareStatement(sql);
 			pstm.setInt(1, Integer.parseInt(bean.getEstado()));
-			pstm.setInt(2, bean.getId());
+			pstm.setInt(2, bean.getTecnico());
+			pstm.setInt(3, bean.getId());
 			estado = pstm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
