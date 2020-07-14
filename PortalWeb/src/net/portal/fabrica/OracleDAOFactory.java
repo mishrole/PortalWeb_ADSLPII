@@ -1,9 +1,11 @@
 package net.portal.fabrica;
 
+import net.portal.dao.MySqlEstadoDAO;
 import net.portal.dao.MySqlNormativaDAO;
 import net.portal.dao.MySqlPendientesDAO;
 import net.portal.dao.MySqlSolicitudDAO;
 import net.portal.dao.MySqlUsuarioDAO;
+import net.portal.interfaces.EstadoDAO;
 import net.portal.interfaces.NormativaDAO;
 import net.portal.interfaces.PendientesDAO;
 import net.portal.interfaces.SolicitudDAO;
@@ -13,7 +15,6 @@ public class OracleDAOFactory extends DAOFactory {
 
 	@Override
 	public SolicitudDAO getSolicitudDAO() {
-		// TODO Auto-generated method stub
 		return new MySqlSolicitudDAO();
 	}
 	
@@ -24,13 +25,17 @@ public class OracleDAOFactory extends DAOFactory {
 
 	@Override
 	public NormativaDAO getNormativaDAO() {
-		// TODO Auto-generated method stub
 		return new MySqlNormativaDAO();
 	}
 
 	@Override
 	public PendientesDAO getPendientesDAO() {
 		return new MySqlPendientesDAO();
+	}
+
+	@Override
+	public EstadoDAO getEstadoDAO() {
+		return new MySqlEstadoDAO();
 	}
 
 

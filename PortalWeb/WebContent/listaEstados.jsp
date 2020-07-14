@@ -10,14 +10,14 @@
 <!-- Bootstrap 4.5 CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<title>Lista de Normativas</title>
+<title>Lista de Estados</title>
 </head>
 </head>
 <body>
 
 <div class="container">
-		<h2 class="text-center mt-5 mb-5">Lista de Normativas</h2>
-		<button type="submit" class="btn btn-primary">Nueva Normativa</button><p>
+		<h2 class="text-center mt-5 mb-5">Lista de Estados</h2>
+		<button type="submit" class="btn btn-primary">Nuevo Estado</button><p>
 			
 			<table id="table_id" class="display">
 			    <thead>
@@ -28,10 +28,10 @@
 			        </tr>
 			    </thead>
 			    <tbody>
-					<c:forEach items="${requestScope.normativas}" var="item">
+					<c:forEach items="${requestScope.estados}" var="item">
 						<tr>
-				         	<td>${item.normativa_id}</td>
-				         	<td>${item.normativa_nombre}</td>
+				         	<td>${item.estado_id}</td>
+				         	<td>${item.estado_nombre}</td>
 				         	<!-- <td><a href="ServletNormativa?accion=buscar&codigo=${row.normativa_id}">Editar</a></td> -->
 				        </tr>
 					</c:forEach>
@@ -52,7 +52,7 @@
 	} );
 	
 	$(".btn-primary").click(function() {
-		window.location.href='normativa.jsp';
+		window.location.href='estado.jsp';
 	})
 	</script>
 

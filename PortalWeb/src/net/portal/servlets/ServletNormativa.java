@@ -35,8 +35,27 @@ public class ServletNormativa extends HttpServlet {
 		if(operation.equals("LISTAR")) {
 			listarTodasNormativas(request, response);
 		}else if(operation.equals("REGISTRAR")) {
-			
+			registrarNormativa(request, response);
 		}
+	}
+
+	private void registrarNormativa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nombre;
+		nombre = request.getParameter("nombre");
+		
+		Normativa bean = new Normativa();
+		bean.setNormativa_nombre(nombre);
+		
+		int salida = servicioNormativa.guardarNormativa(bean);
+		
+		if(salida != -1) {
+			request.setAttribute("MENSAJE", "Se registró correctamente");
+		}else {
+			request.setAttribute("MENSAJE", "Error en el registro");
+		}
+		
+		request.getRequestDispatcher("/normativa.jsp").forward(request, response);
+		
 	}
 
 	private void listarTodasNormativas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
