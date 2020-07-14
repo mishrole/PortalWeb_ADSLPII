@@ -23,7 +23,7 @@
 
 <div class="container">
 <h2 class="text-center mt-5 mb-5">Nueva Solicitud</h2>
-<form method="post" action="ServletUnidadOrganica?accion=REGISTRAR" id="solicitud-form" enctype="multipart/form-data">
+<form method="post" action="ServletSolicitud?accion=REGISTRAR" id="solicitud-form" enctype="multipart/form-data">
   <div class="form-group row">
     <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
     <div class="col-sm-10">

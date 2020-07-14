@@ -23,15 +23,15 @@ import net.portal.entidad.Normativa;
 /**
  * Servlet implementation class ServletMantenimientoSolicitud
  */
-@WebServlet("/ServletUnidadOrganica")
+@WebServlet("/ServletSolicitud")
 @MultipartConfig
-public class ServletUnidadOrganica extends HttpServlet {
+public class ServletSolicitud extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private SolicitudService servicioSolicitud;
 	private NormativaService servicioNormativa;
 
-    public ServletUnidadOrganica() {
+    public ServletSolicitud() {
     	super();
         servicioSolicitud = new SolicitudService();
         servicioNormativa = new NormativaService();
@@ -79,7 +79,7 @@ public class ServletUnidadOrganica extends HttpServlet {
 		NuevaSolicitud bean = new NuevaSolicitud();
 		
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		
 		bean.setFecha(sdf.format(date));
 		bean.setUsuario(1); // Seteado temporal (todavía no está listo)

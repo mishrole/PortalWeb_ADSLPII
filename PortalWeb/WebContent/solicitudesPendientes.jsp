@@ -32,7 +32,7 @@
 				         	<td>${item.id}</td>
 				         	<td>${item.fecha}</td>
 				         	<td>${item.estado}</td>
-				         	<td><a href="ServletUnidadOrganica?accion=buscar&codigo=${row.codigo}">Editar</a></td>
+				         	<td><a href="ServletSolicitud?accion=buscar&codigo=${row.codigo}">Editar</a></td>
 				        </tr>
 					</c:forEach>
 			    </tbody>

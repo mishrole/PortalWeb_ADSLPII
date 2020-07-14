@@ -114,7 +114,7 @@ menu_url varchar(300) not null,
 primary key (menu_id)
 );
 
-Insert into menu values(null, "Solicitudes Presentadas", "ServletUnidadOrganica?accion=LISTAR"), (null, "Solicitudes Pendientes", "ServletPendientes?accion=LISTAR");
+Insert into menu values(null, "Solicitudes Presentadas", "ServletSolicitud?accion=LISTAR"), (null, "Solicitudes Pendientes", "ServletPendientes?accion=LISTAR");
 
 Create table acceso
 (

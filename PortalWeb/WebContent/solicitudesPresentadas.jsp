@@ -42,7 +42,7 @@
 				         	<td>${item.id}</td>
 				         	<td>${item.fecha}</td>
 				         	<td>${item.estado}</td>
-				         	<td><a href="ServletUnidadOrganica?accion=buscar&codigo=${row.codigo}">Editar</a></td>
+				         	<td><a href="ServletSolicitud?accion=buscar&codigo=${row.codigo}">Editar</a></td>
 				        </tr>
 					</c:forEach>
 			    </tbody>
@@ -62,7 +62,7 @@
 	} );
 	
 	$(".btn-primary").click(function() {
-		window.location.href='ServletUnidadOrganica?accion=LISTAR_NORMATIVAS';
+		window.location.href='ServletSolicitud?accion=LISTAR_NORMATIVAS';
 	})
 	</script>
 </body>

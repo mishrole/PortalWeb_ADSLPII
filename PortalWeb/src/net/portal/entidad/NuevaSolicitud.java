@@ -1,7 +1,6 @@
 package net.portal.entidad;
 
 import java.io.InputStream;
-import java.util.Date;
 
 public class NuevaSolicitud extends ListarSolicitudes{
 	private String solicitud_nombre;
