@@ -75,7 +75,11 @@ foreign key (usuario_id) references usuario(usuario_id) on update cascade on del
 foreign key (tecnico_asignado) references usuario(usuario_id) on update cascade on delete no action
 );
 
-Insert into solicitud values (1, '2020-07-13 00:00:00', 1, 1, 'test', 'test', 1, 'asda', 1);
+Insert into solicitud values (null, '2020-07-13 00:00:00', 1, 1, 'Solicitud # 1', 'Solicitud en espera', 1, 'asda', null);
+Insert into solicitud values (null, '2020-07-14 00:00:00', 1, 2, 'Solicitud # 2', 'Solicitud Aprobada', 1, 'asda', 1);
+Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 3, 'Solicitud # 3', 'Solicitud Rechazada', 1, 'asda', null);
+Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 4, 'Solicitud # 4', 'Solicitud Atendida', 1, 'asda', 1);
+Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 4, 'Solicitud # 5', 'Solicitud Finalizada', 1, 'asda', 1);
 
 Create table informe
 (
@@ -114,7 +118,7 @@ menu_url varchar(300) not null,
 primary key (menu_id)
 );
 
-Insert into menu values(null, "Solicitudes Presentadas", "ServletSolicitud?accion=LISTAR"), (null, "Solicitudes Pendientes", "ServletPendientes?accion=LISTAR");
+Insert into menu values(null, "Solicitudes Presentadas", "solicitudesPresentadas.jsp"), (null, "Solicitudes Pendientes", "solicitudesPendientes.jsp");
 
 Create table acceso
 (

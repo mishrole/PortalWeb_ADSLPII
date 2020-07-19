@@ -28,15 +28,6 @@
 			        </tr>
 			    </thead>
 			    <tbody>
-			    <!--
-					<c:forEach items="${requestScope.presentadas}" var="item">
-						<tr>
-				         	<td>${item.id}</td>
-				         	<td>${item.fecha}</td>
-				         	<td>${item.estado}</td>
-				         	<td><a href="ServletSolicitud?accion=buscar&codigo=${row.codigo}">Editar</a></td> 
-				        </tr>
-					</c:forEach>-->
 			    </tbody>
 			</table>
 		</div>
