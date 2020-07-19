@@ -12,7 +12,7 @@ rol_nombre varchar(20) not null,
 primary key (rol_id)
 );
 
-Insert into rol (rol_nombre) values ('Unidad Orgánica'),('Subgerente'),('Técnico Especialista');
+Insert into rol (rol_nombre) values ('Unidad Orgánica'),('Subgerente'),('Técnico Especialista'),('Administrador');
 
 Create table normativa
 (
@@ -50,7 +50,8 @@ foreign key (rol_id) references rol(rol_id) on update cascade on delete no actio
 Insert into usuario (usuario_login, usuario_password, usuario_nombre, usuario_apellido, rol_id) values
 ('maquispe', 'maquispe', 'María', 'Quispe', 1),
 ('anflores', 'anflores', 'Ana', 'Flores', 2),
-('rosanchez', 'rosanchez', 'Rosa', 'Sánchez', 3);
+('rosanchez', 'rosanchez', 'Rosa', 'Sánchez', 3),
+('mishrole', 'mishrole', 'Mitchell', 'Rodríguez', 4);
 
 /*		Tablas de Transacciones		*/
 
@@ -119,6 +120,7 @@ primary key (menu_id)
 );
 
 Insert into menu values(null, "Solicitudes Presentadas", "solicitudesPresentadas.jsp"), (null, "Solicitudes Pendientes", "solicitudesPendientes.jsp");
+Insert into menu values(null, "Usuario", "usuario.jsp"), (null, "Rol", "rol.jsp"), (null, "Estado", "estado.jsp"), (null, "Normativa", "normativa.jsp");
 
 Create table acceso
 (
@@ -130,3 +132,4 @@ foreign key (usuario_id) references usuario(usuario_id)
 );
 
 Insert into acceso values(1, 1), (2, 2);
+Insert into acceso values(3, 4), (4, 4), (5, 4), (6, 4);

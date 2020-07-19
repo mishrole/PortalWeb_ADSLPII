@@ -1,12 +1,15 @@
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@page import="net.portal.entidad.Usuario"%>
 <%
 
 	Usuario bean=(Usuario)  session.getAttribute("usuario");
-	//System.out.print("Prueba : "+bean);
-	if(bean==null)
-	response.sendRedirect("login.jsp");
+	//System.out.print("Prueba : " + bean);
+	if(bean == null) {
+		response.sendRedirect("login.jsp");
+	}else {
+		response.sendRedirect("home.jsp");
+	}
 %>
-
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	  <div class="navbar-header">
 	      <a class="navbar-brand" href="#">Portal Web</a>
