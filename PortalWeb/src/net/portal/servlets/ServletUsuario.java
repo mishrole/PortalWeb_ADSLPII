@@ -1,6 +1,7 @@
 package net.portal.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import net.portal.entidad.Menu;
 import net.portal.entidad.Rol;
@@ -56,8 +59,11 @@ public class ServletUsuario extends HttpServlet {
 
 	private void listarTodosRoles(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Rol> lista = servicioRol.listarRoles();
-		request.setAttribute("roles", lista);
-		request.getRequestDispatcher("/usuario.jsp").forward(request, response);
+		Gson gson = new Gson();
+		String json = gson.toJson(lista);
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter salida = response.getWriter();
+		salida.println(json);
 	}
 
 	private void registrarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -90,9 +96,11 @@ public class ServletUsuario extends HttpServlet {
 
 	private void listarUsuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Usuario> lista = servicioUsuario.listarUsuarios();
-		request.setAttribute("usuarios", lista);
-		request.getRequestDispatcher("/listaUsuarios.jsp").forward(request, response);
-		
+		Gson gson = new Gson();
+		String json = gson.toJson(lista);
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter salida = response.getWriter();
+		salida.println(json);
 	}
 
 	private void cerrarSesionUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

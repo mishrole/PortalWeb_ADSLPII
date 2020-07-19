@@ -1,4 +1,3 @@
-<jsp:include page="menu.jsp"/>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -11,6 +10,7 @@
 <title>Nueva Normativa</title>
 </head>
 <body>
+<jsp:include page="menu.jsp"/>
 
 <c:if test="${requestScope.MENSAJE!=null}">
 	<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -74,7 +74,7 @@
 		});
 		
 		$(".btn-secondary").click(function () {
-			window.location.href='ServletNormativa?operacion=LISTAR';
+			window.location.href='listaNormativas.jsp';
 		})
 	</script>
 
