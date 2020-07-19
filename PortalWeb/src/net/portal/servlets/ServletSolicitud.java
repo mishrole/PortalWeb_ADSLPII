@@ -2,6 +2,7 @@ package net.portal.servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import com.google.gson.Gson;
 
 import net.portal.entidad.NuevaSolicitud;
 import net.portal.service.NormativaService;
@@ -50,16 +53,31 @@ public class ServletSolicitud extends HttpServlet {
 	}
 
 	private void listarTodasNormativas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Normativa> lista = servicioNormativa.listarNormativas();
+		/*List<Normativa> lista = servicioNormativa.listarNormativas();
 		request.setAttribute("normativas", lista);
 		request.getRequestDispatcher("/registraSolicitud.jsp").forward(request, response);
+		*/
 		
+		List<Normativa> lista = servicioNormativa.listarNormativas();
+		Gson gson = new Gson();
+		String json = gson.toJson(lista);
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter salida = response.getWriter();
+		salida.println(json);
 	}
 
 	private void listarSolicitudesPresentadas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
 		List<ListarSolicitudes> lista = servicioSolicitud.listarPresentadas();
 		request.setAttribute("presentadas", lista);
 		request.getRequestDispatcher("/solicitudesPresentadas.jsp").forward(request, response);
+		*/
+		List<ListarSolicitudes> lista = servicioSolicitud.listarPresentadas();
+		Gson gson = new Gson();
+		String json = gson.toJson(lista);
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter salida = response.getWriter();
+		salida.println(json);
 	}
 
 	private void registrarSolicitud(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
