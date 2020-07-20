@@ -15,6 +15,13 @@
 <body>
 <jsp:include page="menu.jsp"/>
 
+<c:if test="${sessionScope.usuario.nombre == null}">
+	<script>
+		console.log("No está logueado");
+		window.location.href = "index.jsp";
+	</script>
+</c:if>
+
 <div class="container">
 		<h2 class="text-center mt-5 mb-5">Lista de Roles</h2>
 		<button type="submit" class="btn btn-primary">Nuevo Rol</button><p>

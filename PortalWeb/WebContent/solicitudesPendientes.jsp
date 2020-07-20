@@ -14,6 +14,13 @@
 <body>
 <jsp:include page="menu.jsp"/>
 
+<c:if test="${sessionScope.usuario.nombre == null}">
+	<script>
+		console.log("No está logueado");
+		window.location.href = "index.jsp";
+	</script>
+</c:if>
+
 <c:if test="${requestScope.MENSAJE!=null}">
 	<div class="alert alert-warning alert-dismissible fade show" role="alert">
 	  <strong>${requestScope.MENSAJE}</strong>

@@ -18,7 +18,6 @@
 		      <a class="nav-link" href="${row.url}">${row.descripcion}</a>
 		    </li>
 		</c:forEach>
-	    
 	  </ul>
 	  <ul class="navbar-nav">
 	  	<span class="nav-item nav-link"> ${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
@@ -30,8 +29,7 @@
 		        <li><a class="nav-link" href="login.jsp">Iniciar Sesión</a></li>
 		    </c:otherwise>
 		</c:choose>
-	  	
 	  </ul>
-	  
 	</nav>
 
+	
