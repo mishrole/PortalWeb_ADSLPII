@@ -7,5 +7,6 @@ import net.portal.entidad.NuevaSolicitud;
 public interface PendientesDAO {
 	public List<ListarSolicitudes> listPendientes();
 	public int updatePendiente(ListarSolicitudes bean);
+	public int rejectPendiente(ListarSolicitudes bean);
 	public NuevaSolicitud findSolicitud(int codigo);
 }

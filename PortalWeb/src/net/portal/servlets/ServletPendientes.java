@@ -55,9 +55,43 @@ public class ServletPendientes extends HttpServlet {
 		request.getRequestDispatcher("/gestionaSolicitud.jsp").forward(request, response);
 	}
 
-	private void gestionarSolicitudPendiente(HttpServletRequest request, HttpServletResponse response) {
+	private void gestionarSolicitudPendiente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String codigo, estado, tecnico;
+		codigo = request.getParameter("codigo");
+		estado = request.getParameter("estado");
+		tecnico = request.getParameter("tecnicoselec");
+		
+		if(tecnico.isEmpty()) {
+			ListarSolicitudes bean = new ListarSolicitudes();
+			bean.setEstado(estado);
+			bean.setId(Integer.parseInt(codigo));
+			
+			int salida = servicioPendientes.rechazarPendiente(bean);
+			
+			if(salida != -1) {
+				request.setAttribute("MENSAJE", "La solicitud fue actualizada con éxito");
+			}else {
+				request.setAttribute("MENSAJE", "Error al actualizar");
+			}
+		}else {
+			ListarSolicitudes bean = new ListarSolicitudes();
+			bean.setEstado(estado);
+			bean.setTecnico(Integer.parseInt(tecnico));
+			bean.setId(Integer.parseInt(codigo));
+			
+			int salida = servicioPendientes.actualizarPendiente(bean);
+			
+			if(salida != -1) {
+				request.setAttribute("MENSAJE", "La solicitud fue actualizada con éxito");
+			}else {
+				request.setAttribute("MENSAJE", "Error al actualizar");
+			}
+		}
+		
+		//System.out.println(codigo + " " + estado + " " + tecnico);
 		
 		
+		request.getRequestDispatcher("/solicitudesPendientes.jsp").forward(request, response);
 	}
 
 	private void listarSolicitudesPendientes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

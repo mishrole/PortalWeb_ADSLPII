@@ -125,4 +125,32 @@ public class MySqlPendientesDAO implements PendientesDAO{
 		return bean;
 	}
 
+	@Override
+	public int rejectPendiente(ListarSolicitudes bean) {
+		int estado = -1;
+		
+		Connection cn = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			cn = MySqlBDConexion.getConexion();
+			String sql = "Update solicitud set estado_id = ? where solicitud_id = ?";
+			pstm = cn.prepareStatement(sql);
+			pstm.setInt(1, Integer.parseInt(bean.getEstado()));
+			pstm.setInt(2, bean.getId());
+			estado = pstm.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstm != null) pstm.close();
+				if(cn != null) cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return estado;
+	}
+
 }

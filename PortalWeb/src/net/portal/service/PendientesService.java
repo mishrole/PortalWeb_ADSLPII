@@ -22,4 +22,8 @@ public class PendientesService {
 	public NuevaSolicitud buscarPendiente(int codigo) {
 		return daoPendientes.findSolicitud(codigo);
 	}
+	
+	public int rechazarPendiente(ListarSolicitudes bean) {
+		return daoPendientes.rejectPendiente(bean);
+	}
 }
