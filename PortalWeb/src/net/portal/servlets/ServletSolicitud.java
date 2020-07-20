@@ -13,14 +13,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
 
 import net.portal.entidad.NuevaSolicitud;
+import net.portal.entidad.Usuario;
 import net.portal.service.NormativaService;
 import net.portal.service.SolicitudService;
+import net.portal.service.UsuarioService;
 import net.portal.entidad.ListarSolicitudes;
+import net.portal.entidad.Menu;
 import net.portal.entidad.Normativa;
 
 /**
@@ -62,7 +66,12 @@ public class ServletSolicitud extends HttpServlet {
 	}
 
 	private void listarSolicitudesPresentadas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<ListarSolicitudes> lista = servicioSolicitud.listarPresentadas();
+		
+		HttpSession session = request.getSession();
+		Usuario user = (Usuario) session.getAttribute("usuario");
+		int codigo = user.getId();
+		
+		List<ListarSolicitudes> lista = servicioSolicitud.listarPresentadas(codigo);
 		Gson gson = new Gson();
 		String json = gson.toJson(lista);
 		response.setContentType("application/json;charset=UTF-8");
@@ -83,15 +92,17 @@ public class ServletSolicitud extends HttpServlet {
 
 		contenido = archivo.getInputStream();
 		
-		/*	Objeto de Clase Solicitud */
 		NuevaSolicitud bean = new NuevaSolicitud();
 		
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		
+		HttpSession session=request.getSession();
+		Usuario user = (Usuario) session.getAttribute("usuario");
+		
 		bean.setFecha(sdf.format(date));
-		bean.setUsuario(1); // Seteado temporal (todavía no está listo)
-		bean.setEstado("1"); // Estado por defecto : En proceso
+		bean.setUsuario(user.getId());
+		bean.setEstado("1"); // Estado por defecto : En espera
 		
 		bean.setSolicitud_nombre(nombre);
 		bean.setSolicitud_resumen(resumen);
@@ -106,7 +117,6 @@ public class ServletSolicitud extends HttpServlet {
 			request.setAttribute("MENSAJE", "Error en el registro");
 		}
 		
-		//response.sendRedirect("registraSolicitud.html");
 		request.getRequestDispatcher("/registraSolicitud.jsp").forward(request, response);
 	}
 

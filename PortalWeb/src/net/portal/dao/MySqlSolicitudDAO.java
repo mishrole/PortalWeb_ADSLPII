@@ -105,7 +105,7 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 	}
 
 	@Override
-	public List<ListarSolicitudes> listPresentadas() {
+	public List<ListarSolicitudes> listPresentadas(int codigo) {
 		List<ListarSolicitudes> lista = new ArrayList<ListarSolicitudes>();
 		
 		ListarSolicitudes bean = null;
@@ -116,8 +116,9 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 		try {
 			
 			cn = MySqlBDConexion.getConexion();
-			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.usuario_id, E.estado_nombre from solicitud S inner join estado E on S.estado_id = E.estado_id";
+			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.usuario_id, E.estado_nombre from solicitud S inner join estado E on S.estado_id = E.estado_id where S.usuario_id = ?";
 			pstm = cn.prepareStatement(sql);
+			pstm.setInt(1, codigo);
 			rs = pstm.executeQuery();
 			
 			while(rs.next()) {

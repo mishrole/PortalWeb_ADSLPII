@@ -81,6 +81,7 @@ Insert into solicitud values (null, '2020-07-14 00:00:00', 1, 2, 'Solicitud # 2'
 Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 3, 'Solicitud # 3', 'Solicitud Rechazada', 1, 'asda', null);
 Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 4, 'Solicitud # 4', 'Solicitud Atendida', 1, 'asda', 1);
 Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 4, 'Solicitud # 5', 'Solicitud Finalizada', 1, 'asda', 1);
+Insert into solicitud values (null, '2020-07-15 00:00:00', 2, 4, 'Solicitud # 6', 'Solicitud Finalizada', 1, 'asda', 1);
 
 Create table informe
 (

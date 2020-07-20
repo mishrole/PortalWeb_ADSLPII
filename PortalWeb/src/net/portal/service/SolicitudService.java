@@ -15,8 +15,8 @@ public class SolicitudService {
 		return daoSolicitud.insertSolicitud(bean);
 	}
 	
-	public List<ListarSolicitudes>listarPresentadas() {
-		return daoSolicitud.listPresentadas();
+	public List<ListarSolicitudes>listarPresentadas(int codigo) {
+		return daoSolicitud.listPresentadas(codigo);
 	}
 
 }
