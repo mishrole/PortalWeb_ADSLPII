@@ -52,7 +52,7 @@ public class ServletPendientes extends HttpServlet {
 		String codigo = request.getParameter("codigo");
 		NuevaSolicitud bean = servicioPendientes.buscarPendiente(Integer.parseInt(codigo));
 		request.setAttribute("pendiente", bean);
-		request.getRequestDispatcher("/gestionaSolicitud.jsp").forward(request, response);;
+		request.getRequestDispatcher("/gestionaSolicitud.jsp").forward(request, response);
 	}
 
 	private void gestionarSolicitudPendiente(HttpServletRequest request, HttpServletResponse response) {

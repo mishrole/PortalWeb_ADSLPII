@@ -28,32 +28,32 @@
   <div class="form-group row">
     <label for="inputCodigo" class="col-sm-2 col-form-label">Código</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputCodigo" name="codigo" disabled>  
+      <input type="text" class="form-control" id="inputCodigo" name="codigo" value="${requestScope.pendiente.id}" disabled>  
     </div>
     <label for="inputFecha" class="col-sm-2 col-form-label">Fecha</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputFecha" name="fecha" disabled>  
+      <input type="text" class="form-control" id="inputFecha" name="fecha" value="${requestScope.pendiente.fecha}" disabled>  
     </div>
   </div>
   
   <div class="form-group row">
     <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputNombre" name="nombre" disabled>  
+      <input type="text" class="form-control" id="inputNombre" name="nombre" value="${requestScope.pendiente.solicitud_nombre}" disabled>  
     </div>
   </div>
   
   <div class="form-group row">
     <label for="inputResumen" class="col-sm-2 col-form-label">Resumen</label>
     <div class="col-sm-10">
-      <textarea class="form-control" id="inputResumen" rows="3" name="resumen" disabled></textarea>
+      <textarea class="form-control" id="inputResumen" rows="3" name="resumen" disabled>${requestScope.pendiente.solicitud_resumen}</textarea>
     </div>
   </div>
   
   <div class="form-group row">
     <label for="inputNormativa" class="col-sm-2 col-form-label">Normativa</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputNormativa" name="normativa" disabled>  
+      <input type="text" class="form-control" id="inputNormativa" name="normativa" value="${requestScope.pendiente.normativa_id}" disabled>  
     </div>
     
     <label class="col-sm-2 col-form-label" for="estado">Estado</label>
