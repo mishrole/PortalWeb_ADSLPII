@@ -42,7 +42,8 @@
 	$(document).ready( function () {
 	    $('#table_id').DataTable({
 	    	searching: false,
-	    	"info": false
+	    	"info": false,
+	    	lengthChange: false
 	    });
 	    
 	    
