@@ -116,7 +116,7 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 		try {
 			
 			cn = MySqlBDConexion.getConexion();
-			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.usuario_id, E.estado_nombre from solicitud S inner join estado E on S.estado_id = E.estado_id where S.usuario_id = ?";
+			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.usuario_id, E.estado_nombre from solicitud S inner join estado E on S.estado_id = E.estado_id where S.usuario_id = ? order by S.solicitud_fecha asc";
 			pstm = cn.prepareStatement(sql);
 			pstm.setInt(1, codigo);
 			rs = pstm.executeQuery();

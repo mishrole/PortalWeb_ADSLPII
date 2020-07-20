@@ -23,69 +23,67 @@
 
 <div class="container">
 <h2 class="text-center mt-5 mb-5">Gestionar Solicitud</h2>
-<form method="post" action="ServletPendientes?accion=GESTIONAR" id="solicitud-form" enctype="multipart/form-data">
+<form method="post" action="ServletPendientes?accion=GESTIONAR" id="gestionar-form" enctype="multipart/form-data">
 
   <div class="form-group row">
     <label for="inputCodigo" class="col-sm-2 col-form-label">Código</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputCodigo" name="codigo" value="${requestScope.pendiente.id}" disabled>  
+      <input type="text" class="form-control" id="inputCodigo" name="codigo" value="${requestScope.pendiente.id}" readonly>  
     </div>
     <label for="inputFecha" class="col-sm-2 col-form-label">Fecha</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputFecha" name="fecha" value="${requestScope.pendiente.fecha}" disabled>  
+      <input type="text" class="form-control" id="inputFecha" name="fecha" value="${requestScope.pendiente.fecha}" readonly>  
     </div>
   </div>
   
   <div class="form-group row">
     <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputNombre" name="nombre" value="${requestScope.pendiente.solicitud_nombre}" disabled>  
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="inputNombre" name="nombre" value="${requestScope.pendiente.solicitud_nombre}" readonly>  
+    </div>
+    
+     <div class="col-sm-4 text-center">
+      <button type="button" class="btn btn-info btn-block">Visualizar PDF</button> 
     </div>
   </div>
   
   <div class="form-group row">
     <label for="inputResumen" class="col-sm-2 col-form-label">Resumen</label>
     <div class="col-sm-10">
-      <textarea class="form-control" id="inputResumen" rows="3" name="resumen" disabled>${requestScope.pendiente.solicitud_resumen}</textarea>
+      <textarea class="form-control" id="inputResumen" rows="3" name="resumen" readonly>${requestScope.pendiente.solicitud_resumen}</textarea>
     </div>
   </div>
   
   <div class="form-group row">
     <label for="inputNormativa" class="col-sm-2 col-form-label">Normativa</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputNormativa" name="normativa" value="${requestScope.pendiente.normativa_id}" disabled>  
+      <input type="text" class="form-control" id="inputNormativa" name="normativa" value="${requestScope.pendiente.normativa_id}" readonly>  
     </div>
     
     <label class="col-sm-2 col-form-label" for="estado">Estado</label>
-      <div class="col-sm-4">
-        <select class="form-control" name="estado">
+      <div class="col-sm-4 validarGestion">
+        <select class="form-control" name="estado" id="selectEstado">
 	        <option value="">[Seleccione]</option>
 	        <option value="2">Aprobado</option>
 	        <option value="3">Rechazado</option>
       	</select>
       </div>
   </div>
-  
-  <div class="form-group row">
-    <label for="inputDocumento" class="col-sm-2 col-form-label"></label>
-    <div class="col-sm-10 text-center">
-      <button type="button" class="btn btn-info btn-block">Visualizar PDF</button> 
-    </div>
-  </div>
 
    <div class="form-group row">
-    <label for="inputTecnico" class="col-sm-2 col-form-label">Técnico</label>
-    <div class="col-sm-8">
-      <input type="text" class="form-control" id="inputTecnico" name="tecnico" disabled>  
+    <label class="col-sm-2 col-form-label" for="tecnico">Técnico</label>
+    <div class="col-sm-8 validarGestion">
+      <input type="text" class="form-control" id="inputTecnico" name="tecnico" readonly>
+      <input type="text" class="d-none form-control" id="codTecnicoSeleccionado" name="codTecnicoSeleccionado" readonly>
     </div>
     <div class="col-sm-2">
-    	<button type="button" id="btnTecnico" class="btn btn-secondary pl-5 pr-5">Asignar</button>
+    	<button type="button" id="btnTecnico" class="btn btn-secondary pl-5 pr-5" disabled>Asignar</button>
     </div>
   </div>
 
     <div class="text-center mt-5">
       <button type="submit" class="btn btn-primary pl-5 pr-5">Guardar</button>
-      <button type="button" class="btn btn-secondary pl-5 pr-5">Cancelar</button>
+      <button type="button" class="btn btn-secondary pl-5 pr-5" id="cancelar">Cancelar</button>
     </div>
     
 </form>
@@ -146,6 +144,20 @@
 
 	<script>
 	
+	$("#cancelar").click(function() {
+		window.location.href = 'solicitudesPendientes.jsp';
+	})
+	
+	$("#selectEstado").change(function() {
+		if($("#selectEstado").val() == 2) {
+			$("#btnTecnico").prop("disabled", false);
+		}else {
+			$("#btnTecnico").prop("disabled", true);
+			$("#inputTecnico").val('');
+			$("#codTecnicoSeleccionado").val('');
+		}
+	});
+	
 	$("#btnTecnico").click(function () {
 		$("#modalTecnico").modal("show");
 	});
@@ -173,53 +185,47 @@
 		codigo = $(this).parents("tr").find("td")[0].innerHTML;
 		nombre = $(this).parents("tr").find("td")[1].innerHTML;
 		apellido = $(this).parents("tr").find("td")[2].innerHTML;
-		$("#inputTecnico").val("["+codigo+"] "+nombre+" "+apellido);
+		$("#inputTecnico").val(nombre+" "+apellido);
+		$("#codTecnicoSeleccionado").val(codigo);
 	});
-	/*
-		$("#solicitud-form").validate({
-			rules: {
-				nombre: {
-					required: true
-				},
-				resumen: {
-					required: true
-				},
-				normativa: {
-					required: true
-				},
-				archivo: {
-					required: true
+
+	$("#gestionar-form").validate({
+		rules: {
+			tecnico: {
+				required: function(element) {
+					if($("#codTecnicoSeleccionado").val().length < 1 && $("#selectEstado").val() == 2) {
+						return true;
+					}else {
+						return false;
+					}
 				}
 			},
-			messages: {
-				nombre: {
-					required: 'Ingrese un nombre'
-				},
-				resumen: {
-					required: 'Ingrese un resumen'
-				},
-				normativa: {
-					required: 'Seleccione una normativa'
-				},
-				archivo: {
-					required: 'Seleccione un archivo'
-				}
-			},
-			
-			errorElement: 'span',
-			errorPlacement: function (error, element) {
-				error.addClass('invalid-feedback');
-				element.closest('.col-sm-10').append(error);
-			},
-			highlight: function (element, errorClass, validClass) {
-				$(element).addClass('is-invalid');
-			},
-			unhighlight: function (element, errorClass, validaCLass) {
-				$(element).removeClass('is-invalid');
+			estado: {
+				required: true
 			}
-			
-		});
-	*/
+		},
+		messages: {
+			estado: {
+				required: 'Seleccione un estado'
+			},
+			tecnico: {
+				required: 'Asigne un Técnico'
+			}
+		},
+		
+		errorElement: 'span',
+		errorPlacement: function (error, element) {
+			error.addClass('invalid-feedback');
+			element.closest('.validarGestion').append(error);
+		},
+		highlight: function (element, errorClass, validClass) {
+			$(element).addClass('is-invalid');
+		},
+		unhighlight: function (element, errorClass, validaCLass) {
+			$(element).removeClass('is-invalid');
+		}
+		
+	});
 	</script>
 </body>
 </html>
