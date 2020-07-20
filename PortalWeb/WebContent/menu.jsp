@@ -1,9 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@page import="net.portal.entidad.Usuario"%>
 <%
-
 	Usuario bean=(Usuario)  session.getAttribute("usuario");
-	//System.out.print("Prueba : " + bean);
 	if(bean == null) {
 		response.sendRedirect("login.jsp");
 	}else {
@@ -24,7 +22,15 @@
 	  </ul>
 	  <ul class="navbar-nav">
 	  	<span class="nav-item nav-link"> ${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
-	  	<li><a class="nav-link" href="ServletUsuario?accion=CERRAR">Cerrar Sesión</a></li>
+	  	<c:choose>
+		    <c:when test="${sessionScope.usuario.nombre != null}">
+		        <li><a class="nav-link" href="ServletUsuario?accion=CERRAR">Cerrar Sesión</a></li>
+		    </c:when>
+		    <c:otherwise>
+		        <li><a class="nav-link" href="login.jsp">Iniciar Sesión</a></li>
+		    </c:otherwise>
+		</c:choose>
+	  	
 	  </ul>
 	  
 	</nav>
