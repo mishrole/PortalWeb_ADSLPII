@@ -3,6 +3,7 @@ package net.portal.service;
 import java.util.List;
 
 import net.portal.entidad.ListarSolicitudes;
+import net.portal.entidad.NuevaSolicitud;
 import net.portal.fabrica.DAOFactory;
 import net.portal.interfaces.PendientesDAO;
 
@@ -16,5 +17,9 @@ public class PendientesService {
 	
 	public int actualizarPendiente(ListarSolicitudes bean) {
 		return daoPendientes.updatePendiente(bean);
+	}
+	
+	public NuevaSolicitud buscarPendiente(int codigo) {
+		return daoPendientes.findSolicitud(codigo);
 	}
 }

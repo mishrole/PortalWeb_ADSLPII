@@ -229,7 +229,7 @@ public class MySqlUsuarioDAO implements UsuarioDAO{
 		
 		try {
 			cn = MySqlBDConexion.getConexion();
-			String sql = "Select * from usuario where usuario_apellido like ?";
+			String sql = "Select * from usuario where rol_id = 3 and usuario_apellido like ?";
 			pstm = cn.prepareStatement(sql);
 			pstm.setString(1, apellido+"%");
 			rs = pstm.executeQuery();

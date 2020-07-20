@@ -106,18 +106,18 @@
 							</div>
 							<div class="panel-body">
 	                          	<div class="form-group pb-4">
-	                               <label class="pr-2 control-label" for="id_reg_nombre">Nombre</label>
+	                               <label class="pr-2 control-label" for="id_reg_nombre">Apellido</label>
 								   <input class="form-control col-sm-6" id="idBuscarApellido"/>
 								   <button type="button" class="btn btn-primary ml-5 pl-4 pr-4" id="btnBuscarTecnico">Buscar</button>
 	                           </div>
 	                           <div id="divAlumno">
-	                           		<table id="id_tableTecnico" class="table table-striped table-bordered" >
+	                           		<table id="id_tableTecnico" class="table table-striped table-bordered text-center" >
 										<thead>
 												<tr>
 													<th>Codigo</th>
 													<th>Nombre</th>
 													<th>Apellido</th>
-													<th></th>
+													<th>Acción</th>
 												</tr>
 										</thead>
 										<tbody>

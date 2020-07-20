@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import net.portal.entidad.ListarSolicitudes;
+import net.portal.entidad.NuevaSolicitud;
 import net.portal.service.PendientesService;
 
 /**
@@ -40,9 +41,18 @@ public class ServletPendientes extends HttpServlet {
 		
 		if(action.equals("LISTAR")) {
 			listarSolicitudesPendientes(request, response);
-		}else if (action.equals("GESTIONAR")) {
+		} else if (action.equals("BUSCAR")) {
+			buscarSolicitudPendiente(request, response);
+		} else if (action.equals("GESTIONAR")) {
 			gestionarSolicitudPendiente(request, response);
 		}
+	}
+
+	private void buscarSolicitudPendiente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String codigo = request.getParameter("codigo");
+		NuevaSolicitud bean = servicioPendientes.buscarPendiente(Integer.parseInt(codigo));
+		request.setAttribute("pendiente", bean);
+		request.getRequestDispatcher("/gestionaSolicitud.jsp").forward(request, response);;
 	}
 
 	private void gestionarSolicitudPendiente(HttpServletRequest request, HttpServletResponse response) {

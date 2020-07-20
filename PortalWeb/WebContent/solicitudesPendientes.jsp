@@ -55,7 +55,9 @@
 					"<tr><td>" + item.id +
 					"</td><td>" + item.fecha +
 					"</td><td>" + item.estado +
-					"</td><td> <a href=''>Gestionar</a> </td></tr>"
+					"</td><td>" +
+					"<a href='ServletPendientes?accion=BUSCAR&codigo="+ item.id +
+					"'>Gestionar</a></td></tr>"
 				)
 			})
 		});
