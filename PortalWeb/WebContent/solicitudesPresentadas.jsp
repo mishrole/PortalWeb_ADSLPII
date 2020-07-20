@@ -40,24 +40,25 @@
 
 	<script>
 	
-	$("#table_id tbody").empty();
-	
-	$.getJSON("ServletSolicitud?accion=LISTAR", {}, function(response) {
-		$.each(response, function(index, item) {
-			$("#table_id").append(
-				"<tr><td>" + item.id +
-				"</td><td>" + item.fecha +
-				"</td><td>" + item.estado +
-				"</td><td> <a href=''>Ver Solicitud</a> </td></tr>"
-			)
-		})
-	});
-	
 	$(document).ready( function () {
 	    $('#table_id').DataTable({
 	    	searching: false,
 	    	"info": false
 	    });
+	    
+		$("#table_id tbody").empty();
+		
+		$.getJSON("ServletSolicitud?accion=LISTAR", {}, function(response) {
+			$.each(response, function(index, item) {
+				$("#table_id").append(
+					"<tr><td>" + item.id +
+					"</td><td>" + item.fecha +
+					"</td><td>" + item.estado +
+					"</td><td> <a href=''>Ver Solicitud</a> </td></tr>"
+				)
+			})
+		});
+	    
 	} );
 	
 	$(".btn-primary").click(function() {

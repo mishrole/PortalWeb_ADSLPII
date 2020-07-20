@@ -46,7 +46,7 @@ public class ServletPendientes extends HttpServlet {
 	}
 
 	private void gestionarSolicitudPendiente(HttpServletRequest request, HttpServletResponse response) {
-
+		
 		
 	}
 

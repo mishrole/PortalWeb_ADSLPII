@@ -39,23 +39,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 	<script>
-	$("#table_id tbody").empty();
-	
-	$.getJSON("ServletNormativa?operacion=LISTAR", {}, function(response) {
-		$.each(response, function(index, item) {
-			$("#table_id").append(
-				"<tr><td>" + item.normativa_id +
-				"</td><td>" + item.normativa_nombre +
-				"</td><td> <a href=''>Eliminar</a> </td></tr>"
-			)
-		})
-	});
 	
 	$(document).ready( function () {
 	    $('#table_id').DataTable({
 	    	searching: false,
 	    	"info": false
 	    });
+	    
+		$("#table_id tbody").empty();
+		
+		$.getJSON("ServletNormativa?operacion=LISTAR", {}, function(response) {
+			$.each(response, function(index, item) {
+				$("#table_id").append(
+					"<tr><td>" + item.normativa_id +
+					"</td><td>" + item.normativa_nombre +
+					"</td><td> <a href=''>Eliminar</a> </td></tr>"
+				)
+			})
+		});
 	} );
 	
 	$(".btn-primary").click(function() {

@@ -17,7 +17,7 @@
 	<div class="container">
 		<h2 class="text-center mt-5 mb-5">Solicitudes Pendientes</h2>
 			
-			<table id="table_id" class="display">
+			<table id="table_id" class="table table-striped table-bordered">
 			    <thead>
 			        <tr>
 			            <th>Código</th>
@@ -37,26 +37,27 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-	<script type="text/javascript">
-	
-	$("#table_id tbody").empty();
-	
-	$.getJSON("ServletPendientes?accion=LISTAR", {}, function(response) {
-		$.each(response, function(index, item) {
-			$("#table_id").append(
-				"<tr><td>" + item.id +
-				"</td><td>" + item.fecha +
-				"</td><td>" + item.estado +
-				"</td><td> <a href=''>Gestionar</a> </td></tr>"
-			)
-		})
-	});
-	
+	<script>
+
 	$(document).ready( function () {
 	    $('#table_id').DataTable({
 	    	searching: false,
 	    	"info": false
 	    });
+	    
+	    
+		$("#table_id tbody").empty();
+		
+		$.getJSON("ServletPendientes?accion=LISTAR", {}, function(response) {
+			$.each(response, function(index, item) {
+				$("#table_id").append(
+					"<tr><td>" + item.id +
+					"</td><td>" + item.fecha +
+					"</td><td>" + item.estado +
+					"</td><td> <a href=''>Gestionar</a> </td></tr>"
+				)
+			})
+		});
 	} );
 	
 	</script>

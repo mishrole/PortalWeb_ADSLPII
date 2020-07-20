@@ -40,23 +40,23 @@
 
 	<script>
 	
-	$("#table_id tbody").empty();
-	
-	$.getJSON("ServletRol?operacion=LISTAR", {}, function(response) {
-		$.each(response, function(index, item) {
-			$("#table_id").append(
-				"<tr><td>" + item.rol_id +
-				"</td><td>" + item.rol_nombre +
-				"</td><td> <a href=''>Eliminar</a> </td></tr>"
-			)
-		})
-	});
-	
 	$(document).ready( function () {
 	    $('#table_id').DataTable({
 	    	searching: false,
 	    	"info": false
 	    });
+	    
+		$("#table_id tbody").empty();
+		
+		$.getJSON("ServletRol?operacion=LISTAR", {}, function(response) {
+			$.each(response, function(index, item) {
+				$("#table_id").append(
+					"<tr><td>" + item.rol_id +
+					"</td><td>" + item.rol_nombre +
+					"</td><td> <a href=''>Eliminar</a> </td></tr>"
+				)
+			})
+		});
 	} );
 	
 	$(".btn-primary").click(function() {
