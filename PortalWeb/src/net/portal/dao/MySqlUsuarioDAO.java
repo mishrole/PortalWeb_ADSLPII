@@ -218,4 +218,42 @@ public class MySqlUsuarioDAO implements UsuarioDAO{
 		
 		return estado;
 	}
+
+	@Override
+	public List<Usuario> listAllTecnicosXApellido(String apellido) {
+		List<Usuario> lista = new ArrayList<Usuario>();
+		Usuario bean = null;
+		Connection cn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		
+		try {
+			cn = MySqlBDConexion.getConexion();
+			String sql = "Select * from usuario where usuario_apellido like ?";
+			pstm = cn.prepareStatement(sql);
+			pstm.setString(1, apellido+"%");
+			rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				bean = new Usuario();
+				bean.setId(rs.getInt(1));
+				bean.setNombre(rs.getString(4));
+				bean.setApellido(rs.getString(5));
+				lista.add(bean);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstm != null) pstm.close();
+				if(cn != null) cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return lista;
+	}
 }

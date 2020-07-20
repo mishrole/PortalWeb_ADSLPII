@@ -22,9 +22,7 @@ import net.portal.entidad.NuevaSolicitud;
 import net.portal.entidad.Usuario;
 import net.portal.service.NormativaService;
 import net.portal.service.SolicitudService;
-import net.portal.service.UsuarioService;
 import net.portal.entidad.ListarSolicitudes;
-import net.portal.entidad.Menu;
 import net.portal.entidad.Normativa;
 
 /**

@@ -14,4 +14,6 @@ public interface UsuarioDAO {
 	public int insertUsuario(Usuario bean);
 	public int deleteUsuario(int codigo);
 	public int updateUsuario(Usuario bean);
+	/*	Filtros	*/
+	public List<Usuario> listAllTecnicosXApellido(String apellido);
 }

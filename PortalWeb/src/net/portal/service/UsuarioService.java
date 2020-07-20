@@ -34,4 +34,8 @@ public class UsuarioService {
 	public int eliminarUsuario(int codigo) {
 		return daoUsuario.deleteUsuario(codigo);
 	}
-}
+	
+	public List<Usuario> buscarTecnicoXApellido(String apellido) {
+		return daoUsuario.listAllTecnicosXApellido(apellido);
+	}
+} 

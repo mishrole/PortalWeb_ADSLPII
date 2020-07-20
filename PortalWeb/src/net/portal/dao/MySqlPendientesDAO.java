@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.portal.entidad.ListarSolicitudes;
+import net.portal.entidad.NuevaSolicitud;
 import net.portal.interfaces.PendientesDAO;
 import net.portal.utils.MySqlBDConexion;
 
@@ -80,6 +81,48 @@ public class MySqlPendientesDAO implements PendientesDAO{
 		}
 		
 		return estado;
+	}
+
+	@Override
+	public NuevaSolicitud findSolicitud(int codigo) {
+		NuevaSolicitud bean = null;
+		Connection cn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		
+		try {
+			cn = MySqlBDConexion.getConexion();
+			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.solicitud_nombre, "
+					+ "S_solicitud_resumen, N.normativa_nombre, S.solicitud_file from solicitud S"
+					+ " inner join estado E on S.estado_id = E.estado_id inner join normativa N on S.normativa_id = N.normativa_id"
+					+ " where solicitud_id = ?";
+			pstm = cn.prepareStatement(sql);
+			pstm.setInt(1, codigo);
+			rs = pstm.executeQuery();
+
+			if(rs.next()) {
+				bean = new NuevaSolicitud();
+				bean.setId(1);
+				bean.setFecha(rs.getString(2));
+				bean.setSolicitud_nombre(rs.getString(3));
+				bean.setSolicitud_resumen(rs.getString(4));
+				bean.setNormativa_id(rs.getString(5));
+				bean.setSolicitud_file(rs.getBinaryStream(6));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstm!=null) pstm.close();
+				if(cn!=null) cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return bean;
 	}
 
 }

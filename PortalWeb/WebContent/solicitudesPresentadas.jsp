@@ -14,10 +14,6 @@
 <body>
 <jsp:include page="menu.jsp"/>
 
-<span style="display:none">
-${sessionScope.usuario.id}
-</span>
-
 	<div class="container">
 		<h2 class="text-center mt-5 mb-5">Solicitudes Presentadas</h2>
 		<button type="submit" class="btn btn-primary">Nueva Solicitud</button><p>
@@ -53,7 +49,7 @@ ${sessionScope.usuario.id}
 	    
 		$("#table_id tbody").empty();
 		
-		$.getJSON("ServletSolicitud?accion=LISTAR", {codigo: '' }, function(response) {
+		$.getJSON("ServletSolicitud?accion=LISTAR", {}, function(response) {
 			$.each(response, function(index, item) {
 				$("#table_id").append(
 					"<tr><td>" + item.id +

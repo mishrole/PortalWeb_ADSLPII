@@ -54,6 +54,7 @@
   	</div>
     <div class="text-center mt-5">
       <button type="submit" class="btn btn-primary pl-5 pr-5">Enviar</button>
+      <button type="button" class="btn btn-secondary pl-5 pr-5">Ver todas</button>
     </div>
     
 </form>
@@ -119,6 +120,10 @@
 			}
 			
 		});
+		
+		$(".btn-secondary").click(function () {
+			window.location.href='solicitudesPresentadas.jsp';
+		})
 	</script>
 </body>
 </html>

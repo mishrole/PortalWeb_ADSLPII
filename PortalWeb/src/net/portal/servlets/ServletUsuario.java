@@ -54,7 +54,19 @@ public class ServletUsuario extends HttpServlet {
 			registrarUsuario(request, response);
 		}else if (action.equals("LISTAR_ROLES")) {
 			listarTodosRoles(request, response);
+		}else if (action.equals("CONSULTAR_TECNICO")) {
+			listarTecnicosXApellido(request, response);
 		}
+	}
+
+	private void listarTecnicosXApellido(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String apellido = request.getParameter("apellido");
+		List<Usuario> lista = servicioUsuario.buscarTecnicoXApellido(apellido);
+		Gson gson = new Gson();
+		String json = gson.toJson(lista);
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter salida = response.getWriter();
+		salida.println(json);
 	}
 
 	private void listarTodosRoles(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
