@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <title>Lista de Usuario</title>
 </head>
-</head>
 <body>
 <jsp:include page="menu.jsp"/>
 

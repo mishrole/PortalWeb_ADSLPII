@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Informe {
 	
 	private int informe_id;
-	private Date informe_fecha;
+	private String informe_fecha;
 	
 	private int solicitud_id;
 	private int usuario_id;
@@ -20,11 +20,11 @@ public class Informe {
 		this.informe_id = informe_id;
 	}
 
-	public Date getInforme_fecha() {
+	public String getInforme_fecha() {
 		return informe_fecha;
 	}
 
-	public void setInforme_fecha(Date informe_fecha) {
+	public void setInforme_fecha(String informe_fecha) {
 		this.informe_fecha = informe_fecha;
 	}
 

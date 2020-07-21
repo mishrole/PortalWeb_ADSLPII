@@ -9,7 +9,7 @@
 <!-- Bootstrap 4.5 CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-<title>Lista de Estados</title>
+<title>Informes Pendientes</title>
 </head>
 <body>
 <jsp:include page="menu.jsp"/>
@@ -21,15 +21,24 @@
 	</script>
 </c:if>
 
-<div class="container">
-		<h2 class="text-center mt-5 mb-5">Lista de Estados</h2>
-		<button type="submit" class="btn btn-primary">Nuevo Estado</button><p>
+<c:if test="${requestScope.MENSAJE!=null}">
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  <strong>${requestScope.MENSAJE}</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+</c:if>
+
+	<div class="container">
+		<h2 class="text-center mt-5 mb-5">Informes Pendientes</h2>
 			
 			<table id="table_id" class="table table-striped table-bordered text-center">
 			    <thead>
 			        <tr>
 			            <th>Código</th>
-			            <th>Nombre</th>
+			            <th>Fecha</th>
+			            <th>Estado</th>
 			            <th>Acción</th>
 			        </tr>
 			    </thead>
@@ -45,9 +54,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 	<script>
-	
+
 	$(document).ready( function () {
-		
+
 		$('#table_id').DataTable({
 	    	searching: false,
 	    	"info": false,
@@ -57,7 +66,7 @@
 	    	}
 	    });
 		
-		$.getJSON("ServletEstado?operacion=LISTAR", {}, function(response) {
+		$.getJSON("ServletInforme?accion=LISTAR", {}, function(response) {
 			
 			if(response.length != 0) {
 				$("#table_id tbody").empty();
@@ -65,18 +74,17 @@
 
 			$.each(response, function(index, item) {
 				$("#table_id").append(
-					"<tr><td>" + item.estado_id +
-					"</td><td>" + item.estado_nombre +
-					"</td><td> <a href=''>Eliminar</a> </td></tr>"
+					"<tr><td>" + item.id +
+					"</td><td>" + item.fecha +
+					"</td><td>" + item.estado +
+					"</td><td>" +
+					"<a href='ServletInforme?accion=BUSCAR&codigo="+ item.id +
+					"'>Generar</a></td></tr>"
 				)
 			})
 		});
 	} );
 	
-	$(".btn-primary").click(function() {
-		window.location.href='estado.jsp';
-	})
 	</script>
-
 </body>
 </html>
