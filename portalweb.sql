@@ -47,11 +47,12 @@ unique (usuario_login),
 foreign key (rol_id) references rol(rol_id) on update cascade on delete no action
 );
 
-Insert into usuario (usuario_login, usuario_password, usuario_nombre, usuario_apellido, rol_id) values
-('maquispe', 'maquispe', 'María', 'Quispe', 1),
-('anflores', 'anflores', 'Ana', 'Flores', 2),
-('rosanchez', 'rosanchez', 'Rosa', 'Sánchez', 3),
-('mishrole', 'mishrole', 'Mitchell', 'Rodríguez', 4);
+Insert into usuario (usuario_id, usuario_login, usuario_password, usuario_nombre, usuario_apellido, rol_id) values
+(1, 'maquispe', 'maquispe', 'María', 'Quispe', 1),
+(2, 'anflores', 'anflores', 'Ana', 'Flores', 2),
+(3, 'rosanchez', 'rosanchez', 'Rosa', 'Sánchez', 3),
+(4, 'mishrole', 'mishrole', 'Mitchell', 'Rodríguez', 4),
+(5, 'test', 'test', 'Test', 'Especialista', 3);
 
 /*		Tablas de Transacciones		*/
 
@@ -138,3 +139,4 @@ Insert into acceso values(1, 1);
 Insert into acceso values(2, 2), (3, 2);
 Insert into acceso values(4, 3);
 Insert into acceso values(5, 4), (6, 4), (7, 4), (8, 4);
+Insert into acceso values(4, 5);

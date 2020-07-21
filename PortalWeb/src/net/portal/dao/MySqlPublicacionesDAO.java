@@ -15,7 +15,7 @@ import net.portal.utils.MySqlBDConexion;
 public class MySqlPublicacionesDAO implements PublicacionesDAO{
 
 	@Override
-	public List<ListarSolicitudes> listPublicacionesPendientes() {
+	public List<ListarSolicitudes> listPublicacionesPendientes(int codigo) {
 		List<ListarSolicitudes> lista = new ArrayList<ListarSolicitudes>();
 		
 		ListarSolicitudes bean = null;
@@ -26,8 +26,9 @@ public class MySqlPublicacionesDAO implements PublicacionesDAO{
 		try {
 			
 			cn = MySqlBDConexion.getConexion();
-			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.usuario_id, E.estado_nombre from solicitud S inner join estado E on S.estado_id = E.estado_id where S.estado_id like 2";
+			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.usuario_id, E.estado_nombre from solicitud S inner join estado E on S.estado_id = E.estado_id where S.estado_id like 2 and S.tecnico_asignado = ? order by S.solicitud_fecha asc";
 			pstm = cn.prepareStatement(sql);
+			pstm.setInt(1, codigo);
 			rs = pstm.executeQuery();
 			
 			while(rs.next()) {

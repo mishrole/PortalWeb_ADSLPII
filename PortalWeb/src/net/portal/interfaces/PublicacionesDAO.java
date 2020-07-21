@@ -7,7 +7,7 @@ import net.portal.entidad.Portal;
 
 public interface PublicacionesDAO {
 	public int insertPublicacion(Portal bean);
-	public List<ListarSolicitudes> listPublicacionesPendientes();
+	public List<ListarSolicitudes> listPublicacionesPendientes(int codigo);
 	public int updatePublicacionesPendientes(ListarSolicitudes bean);
 	public NuevaSolicitud findPublicacion(int codigo);
 }

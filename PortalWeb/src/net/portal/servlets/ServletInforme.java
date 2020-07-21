@@ -54,9 +54,10 @@ public class ServletInforme extends HttpServlet {
 	}
 
 	private void gestionarSolicitudInforme(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String codigo, argumento;
+		String codigo, argumento, estado;
 		codigo = request.getParameter("codigo");
 		argumento = request.getParameter("argumento");
+		estado = request.getParameter("estado");
 		
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");

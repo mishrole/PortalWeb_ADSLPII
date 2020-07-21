@@ -21,7 +21,6 @@
 	        <tr>
 	            <th>Código</th>
 	            <th>Fecha</th>
-	            <th>Normativa</th>
 	            <th>Acción</th>
 	        </tr>
 	    </thead>
@@ -35,6 +34,38 @@
     <script src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+	<script>
+	
+	$(document).ready( function () {
+			
+			$('#table_id').DataTable({
+		    	searching: false,
+		    	"info": false,
+		    	lengthChange: false,
+		    	"oLanguage": {
+		    		"sEmptyTable": "No existen datos para mostrar"
+		    	}
+		    });
+			
+			$.getJSON("ServletPortal?operacion=LISTAR", {}, function(response) {
+				
+				if(response.length != 0) {
+					$("#table_id tbody").empty();
+				}
+	
+				$.each(response, function(index, item) {
+					$("#table_id").append(
+						"<tr><td>" + item.portal_id +
+						"</td><td>" + item.portal_fecha +
+						"</td><td> <a href=''>Descargar</a> </td></tr>"
+					)
+				})
+			});
+		} );
+	
+	</script>
 
 </body>
 </html>

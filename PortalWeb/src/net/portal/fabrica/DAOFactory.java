@@ -4,6 +4,7 @@ import net.portal.interfaces.EstadoDAO;
 import net.portal.interfaces.InformeDAO;
 import net.portal.interfaces.NormativaDAO;
 import net.portal.interfaces.PendientesDAO;
+import net.portal.interfaces.PortalDAO;
 import net.portal.interfaces.PublicacionesDAO;
 import net.portal.interfaces.RolDAO;
 import net.portal.interfaces.SolicitudDAO;
@@ -26,6 +27,7 @@ public abstract class DAOFactory {
     public abstract RolDAO getRolDAO();
     public abstract PublicacionesDAO getPublicacionesDAO();
     public abstract InformeDAO getInformeDAO();
+    public abstract PortalDAO getPortalDAO();
     
     public static DAOFactory getDAOFactory(int whichFactory){
         switch(whichFactory){

@@ -12,8 +12,8 @@ public class PublicacionesService {
 	DAOFactory fabrica = DAOFactory.getDAOFactory(1);
 	PublicacionesDAO daoPublicaciones = fabrica.getPublicacionesDAO();
 	
-	public List<ListarSolicitudes> listarPublicaciones() {
-		return daoPublicaciones.listPublicacionesPendientes();
+	public List<ListarSolicitudes> listarPublicaciones(int codigo) {
+		return daoPublicaciones.listPublicacionesPendientes(codigo);
 	}
 	
 	public int actualizarPublicacion(ListarSolicitudes bean) {

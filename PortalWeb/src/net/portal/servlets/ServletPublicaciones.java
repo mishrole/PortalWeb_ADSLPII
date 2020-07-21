@@ -94,7 +94,10 @@ public class ServletPublicaciones extends HttpServlet {
 	}
 
 	private void listarPublicacionesPendientes(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		List<ListarSolicitudes> lista = servicioPublicaciones.listarPublicaciones();
+		HttpSession session = request.getSession();
+		Usuario user = (Usuario) session.getAttribute("usuario");
+		int codigo = user.getId();
+		List<ListarSolicitudes> lista = servicioPublicaciones.listarPublicaciones(codigo);
 		Gson gson = new Gson();
 		String json = gson.toJson(lista);
 		response.setContentType("application/json;charset=UTF-8");
