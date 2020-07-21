@@ -30,7 +30,7 @@
 
 <div class="container">
 <h2 class="text-center mt-5 mb-5">Gestionar Publicación</h2>
-<form method="post" action="ServletPublicacion?accion=GESTIONAR" id="gestionar-form">
+<form method="post" action="ServletPublicaciones?accion=GESTIONAR" id="gestionar-form">
 
   <div class="form-group row">
     <label for="inputCodigo" class="col-sm-2 col-form-label">Código</label>
@@ -99,10 +99,14 @@
 
 	$("#gestionar-form").validate({
 		rules: {
-			
+			visibilidad: {
+				required: true
+			}
 		},
 		messages: {
-		
+			visibilidad: {
+				required: 'Seleccione una opción'
+			}
 		},
 		
 		errorElement: 'span',

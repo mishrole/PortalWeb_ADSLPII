@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.portal.entidad.ListarSolicitudes;
 import net.portal.entidad.NuevaSolicitud;
+import net.portal.entidad.Portal;
 import net.portal.interfaces.PublicacionesDAO;
 import net.portal.utils.MySqlBDConexion;
 
@@ -121,5 +122,33 @@ public class MySqlPublicacionesDAO implements PublicacionesDAO{
 		return bean;
 	}
 
-	
+	@Override
+	public int insertPublicacion(Portal bean) {
+		int estado = -1;
+		
+		Connection cn = null;
+		PreparedStatement pstm = null;
+		
+		try {
+			cn = MySqlBDConexion.getConexion();
+			String sql = "Insert into portal values(null, ?, ?, ?, ?)";
+			pstm = cn.prepareStatement(sql);
+			pstm.setString(1, bean.getPortal_fecha());
+			pstm.setInt(2, bean.getSolicitud_id());
+			pstm.setInt(3, bean.getUsuario_id());
+			pstm.setInt(4, bean.getVisibilidad_id());
+			estado = pstm.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstm != null) pstm.close();
+				if(cn != null) cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return estado;
+	}
 }
