@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap 4.5 CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <title>Publicaciones Pendientes</title>
 </head>
 <body>
@@ -30,9 +31,9 @@
 </c:if>
 	
 	<div class="container">
-		<h2 class="text-center mt-5 mb-5">Solicitudes Pendientes</h2>
+		<h2 class="text-center mt-5 mb-5">Publicaciones Pendientes</h2>
 			
-			<table id="table_id" class="table table-striped table-bordered">
+			<table id="table_id" class="table table-striped table-bordered text-center">
 			    <thead>
 			        <tr>
 			            <th>Código</th>
@@ -55,15 +56,22 @@
 	<script>
 	
 	$(document).ready( function () {
+
 		$('#table_id').DataTable({
 	    	searching: false,
 	    	"info": false,
-	    	lengthChange: false
+	    	lengthChange: false,
+	    	"oLanguage": {
+	    		"sEmptyTable": "No existen datos para mostrar"
+	    	}
 	    });
 		
-		$("#table_id tbody").empty();
-		
 		$.getJSON("ServletPublicaciones?accion=LISTAR", {}, function(response) {
+			
+			if(response.length != 0) {
+				$("#table_id tbody").empty();
+			}
+
 			$.each(response, function(index, item) {
 				$("#table_id").append(
 					"<tr><td>" + item.id +

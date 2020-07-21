@@ -25,7 +25,7 @@
 		<h2 class="text-center mt-5 mb-5">Solicitudes Presentadas</h2>
 		<button type="submit" class="btn btn-primary">Nueva Solicitud</button><p>
 			
-			<table id="table_id" class="table table-striped table-bordered">
+			<table id="table_id" class="table table-striped table-bordered text-center">
 			    <thead>
 			        <tr>
 			            <th>Código</th>
@@ -48,15 +48,22 @@
 	<script>
 	
 	$(document).ready( function () {
-	    $('#table_id').DataTable({
+		
+		$('#table_id').DataTable({
 	    	searching: false,
 	    	"info": false,
-	    	lengthChange: false
+	    	lengthChange: false,
+	    	"oLanguage": {
+	    		"sEmptyTable": "No existen datos para mostrar"
+	    	}
 	    });
-	    
-		$("#table_id tbody").empty();
 		
 		$.getJSON("ServletSolicitud?accion=LISTAR", {}, function(response) {
+			
+			if(response.length != 0) {
+				$("#table_id tbody").empty();
+			}
+
 			$.each(response, function(index, item) {
 				$("#table_id").append(
 					"<tr><td>" + item.id +
