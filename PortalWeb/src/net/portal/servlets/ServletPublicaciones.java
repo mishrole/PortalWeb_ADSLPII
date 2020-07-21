@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import net.portal.entidad.ListarSolicitudes;
+import net.portal.entidad.NuevaSolicitud;
 import net.portal.service.PublicacionesService;
 
 /**
@@ -52,8 +53,11 @@ public class ServletPublicaciones extends HttpServlet {
 		
 	}
 
-	private void buscarPublicacionPendiente(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void buscarPublicacionPendiente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String codigo = request.getParameter("codigo");
+		NuevaSolicitud bean = servicioPublicaciones.buscarPublicacion(Integer.parseInt(codigo));
+		request.setAttribute("publicacion", bean);
+		request.getRequestDispatcher("/gestionaPublicacion.jsp").forward(request, response);
 		
 	}
 

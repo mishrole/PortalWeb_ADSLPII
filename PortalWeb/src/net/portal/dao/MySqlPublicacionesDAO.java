@@ -104,7 +104,6 @@ public class MySqlPublicacionesDAO implements PublicacionesDAO{
 				bean.setSolicitud_nombre(rs.getString(3));
 				bean.setSolicitud_resumen(rs.getString(4));
 				bean.setNormativa_id(rs.getString(5));
-				bean.setSolicitud_file(rs.getBinaryStream(6));
 			}
 			
 		} catch (Exception e) {

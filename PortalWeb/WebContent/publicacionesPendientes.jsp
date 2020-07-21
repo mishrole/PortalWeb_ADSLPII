@@ -60,7 +60,7 @@
 					"<tr><td>" + item.id +
 					"</td><td>" + item.fecha +
 					"</td><td>" + item.estado +
-					"</td><td>" + "<a href='ServletSolicitud?accion=BUSCAR&codigo="+ item.id +
+					"</td><td>" + "<a href='ServletPublicaciones?accion=BUSCAR&codigo="+ item.id +
 					"'>Atender</a></td></tr>"
 				)
 			})
