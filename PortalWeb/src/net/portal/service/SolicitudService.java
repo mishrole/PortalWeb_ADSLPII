@@ -18,5 +18,9 @@ public class SolicitudService {
 	public List<ListarSolicitudes>listarPresentadas(int codigo) {
 		return daoSolicitud.listPresentadas(codigo);
 	}
+	
+	public NuevaSolicitud buscarSolicitud(int codigo) {
+		return daoSolicitud.findSolicitud(codigo);
+	}
 
 }

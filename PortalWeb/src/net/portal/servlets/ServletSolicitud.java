@@ -17,11 +17,14 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
+import com.mysql.jdbc.PreparedStatement.ParseInfo;
 
 import net.portal.entidad.NuevaSolicitud;
 import net.portal.entidad.Usuario;
+import net.portal.service.InformeService;
 import net.portal.service.NormativaService;
 import net.portal.service.SolicitudService;
+import net.portal.entidad.Informe;
 import net.portal.entidad.ListarSolicitudes;
 import net.portal.entidad.Normativa;
 
@@ -35,11 +38,13 @@ public class ServletSolicitud extends HttpServlet {
 	
 	private SolicitudService servicioSolicitud;
 	private NormativaService servicioNormativa;
+	private InformeService servicioInforme;
 
     public ServletSolicitud() {
     	super();
         servicioSolicitud = new SolicitudService();
         servicioNormativa = new NormativaService();
+        servicioInforme = new InformeService();
     }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,12 +58,26 @@ public class ServletSolicitud extends HttpServlet {
 			listarTodasNormativas(request, response);
 		}else if(action.equals("BUSCAR")) {
 			buscarSolicitudPresentada(request, response);
+		}else if(action.equals("VER_INFORME")) {
+			buscarInforme(request, response);
 		}
 	}
 
-	private void buscarSolicitudPresentada(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+	private void buscarInforme(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String codigo = request.getParameter("codigo");
+		Informe bean = servicioInforme.buscarInforme(Integer.parseInt(codigo));
+		Gson gson = new Gson();
+		String json = gson.toJson(bean);
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter salida = response.getWriter();
+		salida.println(json);
+	}
+
+	private void buscarSolicitudPresentada(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String codigo = request.getParameter("codigo");
+		NuevaSolicitud bean = servicioSolicitud.buscarSolicitud(Integer.parseInt(codigo));
+		request.setAttribute("solicitud", bean);
+		request.getRequestDispatcher("/verSolicitud.jsp").forward(request, response);
 	}
 
 	private void listarTodasNormativas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

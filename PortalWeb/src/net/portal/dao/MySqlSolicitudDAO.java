@@ -97,8 +97,8 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 		try {
 			cn = MySqlBDConexion.getConexion();
 			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.solicitud_nombre, S.solicitud_resumen, N.normativa_nombre,"
-					+ " E.estado_nombre, S.solicitud_file, S.tecnico_asignado from solicitud S inner join estado E on S.estado_id = E.estado_id"
-					+ " inner join normativa N on S.normativa_id = N.normativa_id inner join usuario U on U.usuario_id = S.tecnico_asignado where solicitud_id = ?";
+					+ " E.estado_nombre from solicitud S inner join estado E on S.estado_id = E.estado_id"
+					+ " inner join normativa N on S.normativa_id = N.normativa_id where solicitud_id = ?";
 			pstm = cn.prepareStatement(sql);
 			pstm.setInt(1, codigo);
 			rs = pstm.executeQuery();
@@ -111,8 +111,6 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 				bean.setSolicitud_resumen(rs.getString(4));
 				bean.setNormativa_id(rs.getString(5));
 				bean.setEstado(rs.getString(6));
-				bean.setSolicitud_file(rs.getBinaryStream(7));
-				bean.setTecnico(rs.getInt(8));
 			}
 			
 		} catch (Exception e) {
@@ -129,4 +127,6 @@ public class MySqlSolicitudDAO implements SolicitudDAO{
 				
 		return bean;	
 	}
+
+	
 }

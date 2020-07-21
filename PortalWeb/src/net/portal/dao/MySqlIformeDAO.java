@@ -153,4 +153,42 @@ public class MySqlIformeDAO implements InformeDAO{
 		
 		return estado;
 	}
+
+	@Override
+	public Informe findInforme(int codigo) {
+		Informe bean = null;
+		Connection cn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		
+		try {
+			cn = MySqlBDConexion.getConexion();
+			String sql = "Select * from informe where solicitud_id = ?";
+			pstm = cn.prepareStatement(sql);
+			pstm.setInt(1, codigo);
+			rs = pstm.executeQuery();
+
+			if(rs.next()) {
+				bean = new Informe();
+				bean.setInforme_id(rs.getInt(1));
+				bean.setInforme_fecha(rs.getString(2));
+				bean.setSolicitud_id(rs.getInt(3));
+				bean.setUsuario_id(rs.getInt(4));
+				bean.setInforme_argumento(rs.getString(5));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstm!=null) pstm.close();
+				if(cn!=null) cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return bean;
+	}
 }

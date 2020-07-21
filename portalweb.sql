@@ -76,11 +76,11 @@ foreign key (usuario_id) references usuario(usuario_id) on update cascade on del
 foreign key (tecnico_asignado) references usuario(usuario_id) on update cascade on delete no action
 );
 
-Insert into solicitud values (null, '2020-07-13 00:00:00', 1, 1, 'Solicitud # 1', 'Solicitud en espera', 1, 'FILEPDF1', null);
-Insert into solicitud values (null, '2020-07-14 00:00:00', 1, 2, 'Solicitud # 2', 'Solicitud Aprobada', 2, 'FILEPDF2', 3);
-Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 3, 'Solicitud # 3', 'Solicitud Rechazada', 3, 'FILEPDF3', null);
-Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 4, 'Solicitud # 4', 'Solicitud Atendida', 4, 'FILEPDF4', 3);
-Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 5, 'Solicitud # 5', 'Solicitud Finalizada', 1, 'FILEPDF5', 3);
+Insert into solicitud values (null, '2020-07-13 01:00:00', 1, 1, 'Solicitud # 1', 'Solicitud # 1', 1, 'FILEPDF1', null);
+Insert into solicitud values (null, '2020-07-14 02:00:00', 1, 1, 'Solicitud # 2', 'Solicitud # 2', 2, 'FILEPDF2', null);
+Insert into solicitud values (null, '2020-07-15 03:00:00', 1, 1, 'Solicitud # 3', 'Solicitud # 3', 3, 'FILEPDF3', null);
+Insert into solicitud values (null, '2020-07-16 04:00:00', 1, 1, 'Solicitud # 4', 'Solicitud # 4', 4, 'FILEPDF4', null);
+Insert into solicitud values (null, '2020-07-17 05:00:00', 1, 1, 'Solicitud # 5', 'Solicitud # 5', 1, 'FILEPDF5', null);
 
 Create table informe
 (

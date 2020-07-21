@@ -88,7 +88,7 @@ public class ServletInforme extends HttpServlet {
 
 	private void buscarSolicitudInforme(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String codigo = request.getParameter("codigo");
-		NuevaSolicitud bean = servicioInforme.buscarInforme(Integer.parseInt(codigo));
+		NuevaSolicitud bean = servicioInforme.buscarSolicitud(Integer.parseInt(codigo));
 		request.setAttribute("informe", bean);
 		request.getRequestDispatcher("/gestionaInforme.jsp").forward(request, response);
 	}

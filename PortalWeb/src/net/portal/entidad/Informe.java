@@ -1,7 +1,5 @@
 package net.portal.entidad;
 
-import java.sql.Date;
-
 public class Informe {
 	
 	private int informe_id;

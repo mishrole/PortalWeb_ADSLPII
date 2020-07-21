@@ -20,12 +20,16 @@ public class InformeService {
 		return daoInforme.listInformesPendientes();
 	}
 	
-	public NuevaSolicitud buscarInforme(int codigo) {
+	public NuevaSolicitud buscarSolicitud(int codigo) {
 		return daoInforme.findSolicitud(codigo);
 	}
 	
 	public int actualizarEstadoSolicitud(ListarSolicitudes bean) {
 		return daoInforme.updateEstadoSolicitud(bean);
+	}
+	
+	public Informe buscarInforme(int codigo) {
+		return daoInforme.findInforme(codigo);
 	}
 	
 }

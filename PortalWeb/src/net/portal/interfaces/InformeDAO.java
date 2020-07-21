@@ -11,4 +11,5 @@ public interface InformeDAO {
 	public int updateEstadoSolicitud(ListarSolicitudes bean);
 	public List<ListarSolicitudes> listInformesPendientes();
 	public NuevaSolicitud findSolicitud(int codigo);
+	public Informe findInforme(int codigo);
 }
