@@ -8,4 +8,5 @@ import net.portal.entidad.NuevaSolicitud;
 public interface SolicitudDAO {
 	public int insertSolicitud(NuevaSolicitud bean);
 	public List<ListarSolicitudes> listPresentadas(int codigo);
+	public NuevaSolicitud findSolicitud(int codigo);
 }

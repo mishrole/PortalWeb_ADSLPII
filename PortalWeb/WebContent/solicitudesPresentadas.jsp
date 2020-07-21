@@ -62,7 +62,8 @@
 					"<tr><td>" + item.id +
 					"</td><td>" + item.fecha +
 					"</td><td>" + item.estado +
-					"</td><td> <a href=''>Ver Solicitud</a> </td></tr>"
+					"</td><td>" + "<a href='ServletSolicitud?accion=BUSCAR&codigo="+ item.id +
+					"'>Visualizar</a></td></tr>"
 				)
 			})
 		});

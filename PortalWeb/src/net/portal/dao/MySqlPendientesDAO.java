@@ -94,7 +94,7 @@ public class MySqlPendientesDAO implements PendientesDAO{
 			cn = MySqlBDConexion.getConexion();
 			String sql = "Select S.solicitud_id, S.solicitud_fecha, S.solicitud_nombre, "
 					+ "S.solicitud_resumen, N.normativa_nombre, S.solicitud_file from solicitud S"
-					+ " inner join estado E on S.estado_id = E.estado_id inner join normativa N on S.normativa_id = N.normativa_id"
+					+ " inner join normativa N on S.normativa_id = N.normativa_id"
 					+ " where solicitud_id = ?";
 			pstm = cn.prepareStatement(sql);
 			pstm.setInt(1, codigo);

@@ -87,10 +87,7 @@ public class ServletPendientes extends HttpServlet {
 				request.setAttribute("MENSAJE", "Error al actualizar");
 			}
 		}
-		
-		//System.out.println(codigo + " " + estado + " " + tecnico);
-		
-		
+
 		request.getRequestDispatcher("/solicitudesPendientes.jsp").forward(request, response);
 	}
 

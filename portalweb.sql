@@ -76,12 +76,11 @@ foreign key (usuario_id) references usuario(usuario_id) on update cascade on del
 foreign key (tecnico_asignado) references usuario(usuario_id) on update cascade on delete no action
 );
 
-Insert into solicitud values (null, '2020-07-13 00:00:00', 1, 1, 'Solicitud # 1', 'Solicitud en espera', 1, 'asda', null);
-Insert into solicitud values (null, '2020-07-14 00:00:00', 1, 2, 'Solicitud # 2', 'Solicitud Aprobada', 1, 'asda', 1);
-Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 3, 'Solicitud # 3', 'Solicitud Rechazada', 1, 'asda', null);
-Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 4, 'Solicitud # 4', 'Solicitud Atendida', 1, 'asda', 1);
-Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 4, 'Solicitud # 5', 'Solicitud Finalizada', 1, 'asda', 1);
-Insert into solicitud values (null, '2020-07-15 00:00:00', 2, 4, 'Solicitud # 6', 'Solicitud Finalizada', 1, 'asda', 1);
+Insert into solicitud values (null, '2020-07-13 00:00:00', 1, 1, 'Solicitud # 1', 'Solicitud en espera', 1, 'FILEPDF1', null);
+Insert into solicitud values (null, '2020-07-14 00:00:00', 1, 2, 'Solicitud # 2', 'Solicitud Aprobada', 2, 'FILEPDF2', 3);
+Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 3, 'Solicitud # 3', 'Solicitud Rechazada', 3, 'FILEPDF3', null);
+Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 4, 'Solicitud # 4', 'Solicitud Atendida', 4, 'FILEPDF4', 3);
+Insert into solicitud values (null, '2020-07-15 00:00:00', 1, 5, 'Solicitud # 5', 'Solicitud Finalizada', 1, 'FILEPDF5', 3);
 
 Create table informe
 (
@@ -120,9 +119,6 @@ menu_url varchar(300) not null,
 primary key (menu_id)
 );
 
-Insert into menu values(null, "Solicitudes Presentadas", "solicitudesPresentadas.jsp"), (null, "Solicitudes Pendientes", "solicitudesPendientes.jsp");
-Insert into menu values(null, "Usuario", "usuario.jsp"), (null, "Rol", "rol.jsp"), (null, "Estado", "estado.jsp"), (null, "Normativa", "normativa.jsp");
-
 Create table acceso
 (
 menu_id int(6) not null,
@@ -132,5 +128,13 @@ foreign key (menu_id) references menu(menu_id),
 foreign key (usuario_id) references usuario(usuario_id)
 );
 
-Insert into acceso values(1, 1), (2, 2);
-Insert into acceso values(3, 4), (4, 4), (5, 4), (6, 4);
+/*	Portal Web (Lista) es Global -> home.jsp	*/
+Insert into menu values(1, "Solicitudes Presentadas", "solicitudesPresentadas.jsp"); /*	Unidad Orgánica 1 */
+Insert into menu values(2, "Solicitudes", "solicitudesPendientes.jsp"), (3, "Informes", "informesPendientes.jsp"); /*	Subgerente 2	*/
+Insert into menu values(4, "Publicaciones", "publicacionesPendientes.jsp");  /*	Técnico Especialista 3	*/
+Insert into menu values(5, "Usuario", "usuario.jsp"), (6, "Rol", "rol.jsp"), (7, "Estado", "estado.jsp"), (8, "Normativa", "normativa.jsp"); /*	Administrador 4	*/
+
+Insert into acceso values(1, 1);
+Insert into acceso values(2, 2), (3, 2);
+Insert into acceso values(4, 3);
+Insert into acceso values(5, 4), (6, 4), (7, 4), (8, 4);

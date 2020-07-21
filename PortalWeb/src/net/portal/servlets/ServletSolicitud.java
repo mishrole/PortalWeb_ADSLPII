@@ -51,7 +51,14 @@ public class ServletSolicitud extends HttpServlet {
 			listarSolicitudesPresentadas(request, response);
 		}else if(action.equals("LISTAR_NORMATIVAS")) {
 			listarTodasNormativas(request, response);
+		}else if(action.equals("BUSCAR")) {
+			buscarSolicitudPresentada(request, response);
 		}
+	}
+
+	private void buscarSolicitudPresentada(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void listarTodasNormativas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
